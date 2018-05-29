@@ -6,8 +6,14 @@
 *.vpk
 *.sfo
 *.self
+*.cbp
+
 
 ctp_shortcut
+.idea
+vita3k.log
+imgui.ini
+.DS_Store
 
 # CMake data
 CMakeCache.txt
