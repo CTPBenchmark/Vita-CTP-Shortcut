@@ -8,7 +8,6 @@
 #include "Background.hh"
 #include "Buttons.hh"
 #include "Checkbox.hh"
-#include "Keyboard.hh"
 
 #ifndef MENU_HH_
 # define MENU_HH_
@@ -53,7 +52,6 @@ private:
 	std::map<int, Buttons*> _more;
 	std::map<std::string, Buttons*> _buttons;
 	std::map<std::string, Checkbox*> _checkboxes;
-    Keyboard* _keyboard;
 
     void startMenu();
     void endMenu();

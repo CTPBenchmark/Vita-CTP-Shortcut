@@ -52,7 +52,7 @@ ENDFUNCTION()
 
 file(GLOB res_files RELATIVE
   ${CMAKE_SOURCE_DIR}
-  img/*.png
+        assets/img/*.png
 )
 add_resources(ctp_res ${res_files})
 
@@ -64,7 +64,6 @@ add_executable(${SHORT_NAME}
         src/Background.cpp
         src/Buttons.cpp
         src/Checkbox.cpp
-        src/Keyboard.cpp
         )
 
 target_link_libraries(${SHORT_NAME}
@@ -76,8 +75,7 @@ target_link_libraries(${SHORT_NAME}
     ScePgf_stub
     ScePvf_stub
     SceCommonDialog_stub
-    SceHttp_stub
-        SceIme_stub
+    SceHttp_stub SceIme_stub
         SceIofilemgr_stub
         SceNetCtl_stub
     SceAppMgr_Stub
@@ -103,6 +101,9 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
         sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png
         sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
         sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
+
+        assets/fonts/Signika/Signika-Regular.ttf fonts/Signika/Signika-Regular.ttf
+        assets/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf
 )
 
 add_custom_target(send

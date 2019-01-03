@@ -1,9 +1,3 @@
-/*
- **
- ** Made by MisterAlex
- **
- */
-
 #ifndef UTILS_H_
 # define UTILS_H_
 
@@ -38,18 +32,6 @@
 # define SCREEN_H	544
 # define SCREEN_L	960
 
-#define SCE_IME_DIALOG_MAX_TITLE_LENGTH	(128)
-#define SCE_IME_DIALOG_MAX_TEXT_LENGTH	(512)
-
-#define IME_DIALOG_RESULT_NONE 0
-#define IME_DIALOG_RESULT_RUNNING 1
-#define IME_DIALOG_RESULT_FINISHED 2
-#define IME_DIALOG_RESULT_CANCELED 3
-
-static uint16_t ime_title_utf16[SCE_IME_DIALOG_MAX_TITLE_LENGTH];
-static uint16_t ime_initial_text_utf16[SCE_IME_DIALOG_MAX_TEXT_LENGTH];
-static uint16_t ime_input_text_utf16[SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1];
-static uint8_t ime_input_text_utf8[SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1];
 
 //Colors
 # define COLOR_CTP_LOGO RGBA8(208, 210, 210, 255)

@@ -4,7 +4,7 @@
  **
  */
 
-#include "../include/Background.hh"
+#include "Background.hh"
 
 Background::Background() {
 	_backgroundColor = COLOR_NIL;

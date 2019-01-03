@@ -4,12 +4,12 @@
  **
  */
 
-#include "../include/Engine.hh"
+#include "Engine.hh"
 
-extern unsigned char _binary_img_LogoCtp_png_start;
-extern unsigned char _binary_img_LogoCtpHalloween_png_start;
-extern unsigned char _binary_img_LogoCtpAnniversary_png_start;
-extern unsigned char _binary_img_LogoCtpChristmas_png_start;
+extern unsigned char _binary_assets_img_LogoCtp_png_start;
+extern unsigned char _binary_assets_img_LogoCtpHalloween_png_start;
+extern unsigned char _binary_assets_img_LogoCtpAnniversary_png_start;
+extern unsigned char _binary_assets_img_LogoCtpChristmas_png_start;
 
 Engine::Engine() {
 
@@ -106,17 +106,17 @@ vita2d_texture *Engine::getLogo() {
 
     //Halloween
     if (_time.month == 10 && _time.day > 15)
-        return vita2d_load_PNG_buffer(&_binary_img_LogoCtpHalloween_png_start);
+        return vita2d_load_PNG_buffer(&_binary_assets_img_LogoCtpHalloween_png_start);
 
     //CTP Anniversary
     if (_time.month == 12 && _time.day == 14)
-        return vita2d_load_PNG_buffer(&_binary_img_LogoCtpAnniversary_png_start);
+        return vita2d_load_PNG_buffer(&_binary_assets_img_LogoCtpAnniversary_png_start);
 
     //Christmas
     if (_time.month == 12 && (_time.day > 14 && _time.day < 28))
-        return vita2d_load_PNG_buffer(&_binary_img_LogoCtpChristmas_png_start);
+        return vita2d_load_PNG_buffer(&_binary_assets_img_LogoCtpChristmas_png_start);
 
-    return vita2d_load_PNG_buffer(&_binary_img_LogoCtp_png_start);
+    return vita2d_load_PNG_buffer(&_binary_assets_img_LogoCtp_png_start);
 }
 
 int Engine::getLang() {

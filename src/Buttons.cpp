@@ -5,7 +5,7 @@
  */
 
 
-#include "../include/Buttons.hh"
+#include "Buttons.hh"
 
 Buttons::Buttons() {
 	_x = 0;

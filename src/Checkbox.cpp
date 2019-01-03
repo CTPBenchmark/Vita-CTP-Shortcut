@@ -2,7 +2,7 @@
 // Created by Applelo
 //
 
-#include "../include/Checkbox.hh"
+#include "Checkbox.hh"
 
 
 Checkbox::Checkbox(vita2d_texture* texture, int x, int y, int width, int height, bool status) : Buttons(texture, x, y, width, height) {

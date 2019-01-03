@@ -5,24 +5,24 @@
  */
 
 
-#include "../include/Menu.hh"
+#include "Menu.hh"
 
-extern unsigned char _binary_img_WalloloRep_png_start;
-extern unsigned char _binary_img_SettingsIcon_png_start;
-extern unsigned char _binary_img_ExitIcon_png_start;
-extern unsigned char _binary_img_CloseIcon_png_start;
-extern unsigned char _binary_img_CheckIcon_png_start;
-extern unsigned char _binary_img_SaveIcon_png_start;
+extern unsigned char _binary_assets_img_WalloloRep_png_start;
+extern unsigned char _binary_assets_img_SettingsIcon_png_start;
+extern unsigned char _binary_assets_img_ExitIcon_png_start;
+extern unsigned char _binary_assets_img_CloseIcon_png_start;
+extern unsigned char _binary_assets_img_CheckIcon_png_start;
+extern unsigned char _binary_assets_img_SaveIcon_png_start;
 
 Menu::Menu() {
     _pgf = vita2d_load_default_pgf();
     _engine = new Engine();
-    _wallolo = vita2d_load_PNG_buffer(&_binary_img_WalloloRep_png_start);
-    _icons["settings"] = vita2d_load_PNG_buffer(&_binary_img_SettingsIcon_png_start);
-    _icons["exit"] = vita2d_load_PNG_buffer(&_binary_img_ExitIcon_png_start);
-    _icons["close"] = vita2d_load_PNG_buffer(&_binary_img_CloseIcon_png_start);
-    _icons["check"] = vita2d_load_PNG_buffer(&_binary_img_CheckIcon_png_start);
-    _icons["save"] = vita2d_load_PNG_buffer(&_binary_img_SaveIcon_png_start);
+    _wallolo = vita2d_load_PNG_buffer(&_binary_assets_img_WalloloRep_png_start);
+    _icons["settings"] = vita2d_load_PNG_buffer(&_binary_assets_img_SettingsIcon_png_start);
+    _icons["exit"] = vita2d_load_PNG_buffer(&_binary_assets_img_ExitIcon_png_start);
+    _icons["close"] = vita2d_load_PNG_buffer(&_binary_assets_img_CloseIcon_png_start);
+    _icons["check"] = vita2d_load_PNG_buffer(&_binary_assets_img_CheckIcon_png_start);
+    _icons["save"] = vita2d_load_PNG_buffer(&_binary_assets_img_SaveIcon_png_start);
 
     _background = new Background(_wallolo, _engine->getBackgroundColor(), _engine->getLogoColor());
     _logo = _engine->getLogo();
@@ -73,8 +73,6 @@ Menu::Menu() {
     _buttons["logo"]->setLocked(!_engine->getCustomisation());
     _buttons["background"] = new Buttons(_pgf, _lang["background"], SCREEN_L - (SCREEN_L/6) - 200, 419, 200, 75);
     _buttons["background"]->setLocked(!_engine->getCustomisation());
-
-    _keyboard = new Keyboard(3, SCE_IME_TYPE_NUMBER);
 
     int color;
     for (int i = 0; i < 3; ++i) {
@@ -455,10 +453,10 @@ void Menu::startMenu() {
 
         if ((_touchX > 0 && _touchX < SCREEN_L && _touchY > 0 && _touchY < SCREEN_H) && !(_touchOldX > 0 && _touchOldX < SCREEN_L && _touchOldY > 0 && _touchOldY < SCREEN_H)) {
             _ctrlMode = false;
-            for (std::map<std::string, Buttons*>::iterator it=_buttons.begin(); it!=_buttons.end(); ++it)
-                it->second->setSelected(false);
-            for (std::map<std::string, Checkbox*>::iterator it=_checkboxes.begin(); it!=_checkboxes.end(); ++it)
-                it->second->setSelected(false);
+            for (auto &_button : _buttons)
+                _button.second->setSelected(false);
+            for (auto &_checkbox : _checkboxes)
+                _checkbox.second->setSelected(false);
         }
     }
 

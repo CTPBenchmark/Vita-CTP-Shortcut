@@ -3,6 +3,12 @@ A small app to access quickly to [Custom Protocol](http://customprotocol.com) We
 
 ## Changelog
 
+### Version 2.0
+
+- Custom your CTP Wallolo (icon and background)
+- Choose to open directly CTP News or Forum when you open the app
+- Improvements inside the application (stability and code more readable)
+
 ### Version 1.5
 
 - New design, new features
@@ -12,10 +18,9 @@ A small app to access quickly to [Custom Protocol](http://customprotocol.com) We
 
 - Initial Release : open only the Custom Protocol Website
 
-### Next (2.0)
+### Next (2.5)
 
-- Custom your CTP Wallolo (icon and background)
-- Choose to open directly CTP News or Forum when you open the app
+
 
 ## Build
 Install **VitaSDK** with [**VDPM**](https://github.com/vitasdk/vdpm) and run the followed commands :
