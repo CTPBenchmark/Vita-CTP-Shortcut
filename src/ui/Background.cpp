@@ -74,7 +74,7 @@ float Background::getPosition(){
 }
 
 // Display
-void Background::displayBackground() {
+void Background::display() {
 	this->position -= speed;
 	this->calc = (int)floor(-position / 1000);
 

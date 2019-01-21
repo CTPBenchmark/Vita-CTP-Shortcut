@@ -8,5 +8,6 @@ CustomApp::CustomApp(const char *firstView) : App(firstView) {
 }
 
 void CustomApp::beforeView() {
-    ui->background->display()//fonctionne pas car croit que c'est Ui et pas UiCustom :'(
+    ui->background->display();//fonctionne pas car croit que c'est Ui et pas UiCustom :'(
 }
+

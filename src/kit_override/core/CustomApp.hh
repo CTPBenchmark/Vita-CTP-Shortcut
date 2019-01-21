@@ -1,11 +1,9 @@
 #ifndef VITAMATERIALKIT_CUSTOMAPP_HH
 #define VITAMATERIALKIT_CUSTOMAPP_HH
 
-
 #include "../../kit/core/App.hh"
-#include "CustomUi.hh"
 
-class CustomApp : App {
+class CustomApp : public App {
 private:
     vita2d_texture *wallolo;
 public:

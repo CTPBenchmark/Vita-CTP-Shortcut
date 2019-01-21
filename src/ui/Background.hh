@@ -49,7 +49,7 @@ public:
 	float getPosition();
 
 	// Display
-	void displayBackground();
+	void display();
 
 
 };
