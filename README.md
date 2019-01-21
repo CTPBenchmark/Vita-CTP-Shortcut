@@ -5,9 +5,11 @@ A small app to access quickly to [Custom Protocol](http://customprotocol.com) We
 
 ### Version 2.0
 
+- Use [VitaMaterialKit](https://github.com/Applelo/VitaMaterialKit/)
 - Custom your CTP Wallolo (icon and background)
 - Choose to open directly CTP News or Forum when you open the app
 - Improvements inside the application (stability and code more readable)
+- Support different languages (english, french)
 
 ### Version 1.5
 
@@ -17,9 +19,6 @@ A small app to access quickly to [Custom Protocol](http://customprotocol.com) We
 ### Version 1.0
 
 - Initial Release : open only the Custom Protocol Website
-
-### Next (2.5)
-
 
 
 ## Build
@@ -50,4 +49,4 @@ make emulator
 - Created by Applelo
 - Wallolo & CTP Logo by Windvern
 - Icons by Google Material Design Team
-- Bubble by Tuxbot123 inspired by Windvern design
+- Bubble and App Theme by Tuxbot123 inspired by Windvern design

@@ -6,7 +6,7 @@
 #include "ui/UiIcons.hpp"
 #include "ui/UiTexts.hpp"
 #include "ui/UiButtons.hpp"
-#include "../ui/Background.hh"
+#include "../ui/LayoutTheme.hh"
 
 
 class Ui {
@@ -20,7 +20,7 @@ public:
     UiTexts *texts;
     UiButtons *buttons;
     UiIcons *icons;
-    Background *background;
+    LayoutTheme *layoutTheme;
 
     Ui();
 };

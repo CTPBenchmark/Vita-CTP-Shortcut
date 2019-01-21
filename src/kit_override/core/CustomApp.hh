@@ -4,8 +4,6 @@
 #include "../../kit/core/App.hh"
 
 class CustomApp : public App {
-private:
-    vita2d_texture *wallolo;
 public:
     CustomApp(const char *firstView);
 protected:
