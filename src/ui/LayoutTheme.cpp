@@ -32,13 +32,16 @@ vita2d_texture *LayoutTheme::initLogo() {
 
 int LayoutTheme::getBackgroundColor() {
 
+    if (config->isCustomisation())
+        return RGBA8(config->getBackgroundColor().r, config->getBackgroundColor().g, config->getBackgroundColor().b, 255);
+
     //Halloween
     if (time.month == 10 && time.day > 15)
         return BACKGROUND_COLOR_HALLOWEEN;
 
     //Christmas
     if (time.month == 12 && (time.day > 14 && time.day < 28))
-        return BACKGROUND_COLOR_ANNIVERSARY;
+        return BACKGROUND_COLOR_CHRISTMAS;
 
     //CTP Anniversary
     if (time.month == 12 && time.day == 14)
@@ -49,19 +52,22 @@ int LayoutTheme::getBackgroundColor() {
 
 int LayoutTheme::getIconColor() {
 
+    if (config->isCustomisation())
+        return RGBA8(config->getIconsColor().r, config->getIconsColor().g, config->getIconsColor().b, 255);
+
     //Halloween
     if (time.month == 10 && time.day > 15)
-        return LOGO_COLOR_HALLOWEEN;
+        return ICONS_COLOR_HALLOWEEN;
 
     //Christmas
     if (time.month == 12 && (time.day > 14 && time.day < 28))
-        return LOGO_COLOR_CHRISTMAS;
+        return ICONS_COLOR_CHRISTMAS;
 
     //CTP Anniversary
     if (time.month == 12 && time.day == 14)
-        return LOGO_COLOR_ANNIVERSARY;
+        return ICONS_COLOR_ANNIVERSARY;
 
-    return LOGO_COLOR_CTP;
+    return ICONS_COLOR_CTP;
 }
 
 void LayoutTheme::display() {

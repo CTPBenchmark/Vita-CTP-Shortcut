@@ -8,7 +8,7 @@
 
 Background::Background() {
 	this->backgroundColor = RGBA8(0,0,0,0);
-	this->iconColor = RGBA8(255,255,255,255);
+	this->iconsColor = RGBA8(255,255,255,255);
 	this->foregroundColor = RGBA8(0,0,0,0);
 	this->speed = 0.5;
 	this->position = 0;
@@ -18,12 +18,12 @@ Background::Background() {
 	this->calc = 0;
 }
 
-Background::Background(vita2d_texture* texture, int backgroundColor, int iconColor) {
+Background::Background(vita2d_texture* texture, int backgroundColor, int iconsColor) {
 	this->texture = texture;
 	this->imgWidth = vita2d_texture_get_width(texture);
 	this->imgHeight = vita2d_texture_get_height(texture);
 	this->backgroundColor = backgroundColor;
-	this->iconColor = iconColor;
+	this->iconsColor = iconsColor;
 	this->foregroundColor = RGBA8(0,0,0,0);
 	this->speed = 0.5;
 	this->position = 0;
@@ -35,7 +35,7 @@ Background::Background(vita2d_texture* texture, int backgroundColor, int iconCol
 	this->imgWidth = vita2d_texture_get_width(texture);
 	this->imgHeight = vita2d_texture_get_height(texture);
 	this->backgroundColor = backgroundColor;
-	this->iconColor = iconColor;
+	this->iconsColor = iconColor;
 	this->foregroundColor = foregroundColor;
 	this->speed = speed;
 	this->position = 0;
@@ -61,7 +61,7 @@ void Background::setBackgroundColor(int backgroundColor){
 }
 
 void Background::setLogoColor(int iconColor){
-	this->iconColor = iconColor;
+	this->iconsColor = iconColor;
 }
 
 void Background::setForegroundColor(int foregroundColor){
@@ -83,7 +83,7 @@ void Background::display() {
 			vita2d_draw_rectangle(position + (imgWidth * _i), position + (imgHeight * _j), imgWidth, imgHeight, (unsigned int)backgroundColor);
 
 			if (texture) {
-		 		vita2d_draw_texture_tint(texture, position + (imgWidth * _i), position + (imgHeight * _j), (unsigned int)iconColor);
+		 		vita2d_draw_texture_tint(texture, position + (imgWidth * _i), position + (imgHeight * _j), (unsigned int)iconsColor);
 			}
 
 			vita2d_draw_rectangle(position + (imgWidth * _i), position + (imgHeight * _j), imgWidth, imgHeight, (unsigned int)foregroundColor);
