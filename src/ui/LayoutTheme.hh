@@ -23,6 +23,7 @@ private:
 public:
     LayoutTheme(Config *config);
     void display(bool displayLogo);
+    void updateBackground();
 };
 
 

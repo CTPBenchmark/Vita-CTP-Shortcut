@@ -92,5 +92,12 @@ void LayoutTheme::display(bool displayLogo) {
     }
 }
 
+void LayoutTheme::updateBackground() {
+    background->setBackgroundColor(this->getBackgroundColor());
+    background->setIconColor(this->getIconColor());
+    background->setForegroundColor(this->getForegroundColor());
+    background->setSpeed(this->getSpeed());
+}
+
 
 

@@ -60,7 +60,7 @@ void Background::setBackgroundColor(int backgroundColor){
 	this->backgroundColor = backgroundColor;
 }
 
-void Background::setLogoColor(int iconColor){
+void Background::setIconColor(int iconColor){
 	this->iconsColor = iconColor;
 }
 

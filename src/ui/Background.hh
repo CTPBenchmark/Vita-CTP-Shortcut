@@ -54,7 +54,7 @@ public:
 	void setTexture(vita2d_texture* texture);
 	void setSpeed(float speed);
 	void setBackgroundColor(int backgroundColor);
-	void setLogoColor(int iconColor);
+	void setIconColor(int iconColor);
 	void setForegroundColor(int foregroundColor);
 
 	//Getter

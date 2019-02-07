@@ -26,7 +26,6 @@ private:
     json_t *json;
 
     void createConfig();
-    void loadConfig();
     void avoidOldConfig();
 
 public:
@@ -43,6 +42,7 @@ public:
     bool isCustomisation() const;
 
     void saveConfig();
+    void loadConfig();
 
     void setBackgroundColor(const RGBAColor &backgroundColor);
 

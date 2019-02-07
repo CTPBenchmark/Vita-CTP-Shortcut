@@ -7,6 +7,7 @@
 #include "utils/Pad.hpp"
 #include "../utils/Config.hh"
 #include "../utils/WebModal.hh"
+#include "utils/IME.hpp"
 
 class Utils {
 protected:
@@ -18,6 +19,7 @@ public:
     Pad *pad;
     Config *config;
     I18n *i18n;
+    IME *ime;
     WebModal *webModal;
     Utils();
     virtual void read();

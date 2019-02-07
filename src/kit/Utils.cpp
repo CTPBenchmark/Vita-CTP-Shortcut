@@ -12,6 +12,7 @@ void Utils::init() {
    this->pad = new Pad();
    this->config = new Config();
    this->i18n = new I18n();
+   this->ime = new IME();
    this->webModal = new WebModal(this->config);
 }
 

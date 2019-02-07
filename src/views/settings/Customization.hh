@@ -2,6 +2,7 @@
 #define CTP_SHORTCUT_CUSTOMIZATION_HH
 
 #include "../../kit/core/View.hh"
+#include <stdlib.h>
 
 class Customization : public View {
 private:
@@ -17,6 +18,8 @@ public:
     void controls() override;
 
     void beforeEnter() override;
+
+    void beforeExit() override;
 };
 
 
