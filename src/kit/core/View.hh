@@ -19,6 +19,9 @@ public:
     virtual void contents();
     virtual void controls();
 
+    virtual void beforeEnter();
+    virtual void beforeExit();
+
     std::string getName() const;
 
     void setViewsController(ViewsController *viewsController);

@@ -23,6 +23,6 @@ void UiIcons::draw(const char* iconCode, int x, int y, unsigned int color, unsig
     vita2d_font_draw_text(font, x, y, color, size, iconCode);
 }
 
-void UiIcons::draw(const char* iconCode, int x, int y, IconThemeColor iconThemeColor, unsigned int size) {
-   this->draw(iconCode, x, y, iconThemeColor == ICON_PRIMARY ? theme->getPrimaryRGBA().text : theme->getSecondaryRGBA().text, size);
+void UiIcons::draw(const char* iconCode, int x, int y, TypeTheme iconThemeColor, unsigned int size) {
+   this->draw(iconCode, x, y, iconThemeColor == THEME_PRIMARY ? theme->getPrimaryRGBA().text : theme->getSecondaryRGBA().text, size);
 }

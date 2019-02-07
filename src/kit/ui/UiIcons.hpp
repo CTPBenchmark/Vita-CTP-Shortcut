@@ -14,11 +14,6 @@
 #define DEFAULT_MATERIAL_ICON_SIZE (unsigned int) 50
 #define DEFAULT_MATERIAL_ICON_PATH "app0:assets/fonts/mdi/" FONT_ICON_FILE_NAME_MDI
 
-typedef enum IconThemeColor {
-    ICON_PRIMARY,
-    ICON_SECONDARY
-} IconThemeColor;
-
 class UiIcons {
     private:
         UiTheme *theme;
@@ -30,7 +25,7 @@ class UiIcons {
         UiIcons(const char *path, UiTheme *theme);
 
         void draw(const char* iconCode, int x, int y, unsigned int color = DEFAULT_MATERIAL_ICON_COLOR, unsigned int size = DEFAULT_MATERIAL_ICON_SIZE);
-        void draw(const char* iconCode, int x, int y, IconThemeColor iconThemeColor, unsigned int size = DEFAULT_MATERIAL_ICON_SIZE);
+        void draw(const char* iconCode, int x, int y, TypeTheme iconThemeColor, unsigned int size = DEFAULT_MATERIAL_ICON_SIZE);
 };
 
 

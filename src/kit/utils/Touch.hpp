@@ -18,6 +18,10 @@ typedef struct{
 }vector2;
 
 class Touch{
+	private:
+		int port;
+		vector2 emptyClickPoint;
+
 	public:
 		Touch();
 
@@ -33,8 +37,6 @@ class Touch{
 		vector2 getClickPoint();
 		void read();
 
-	private:
-		vector2 emptyClickPoint;
 		
 };
 

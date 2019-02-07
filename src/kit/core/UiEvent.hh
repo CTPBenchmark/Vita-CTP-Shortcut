@@ -12,11 +12,10 @@ typedef struct ZoneEvent {
 } ZoneEvent;
 
 class UiEvent {
-protected:
-    ZoneEvent zoneEvent;
 public:
-    bool onPad(ZoneEvent zoneEvent, bool button);
-    bool onTouch(ZoneEvent zoneEvent, vector2 touchInfo);
+    virtual bool onPad(ZoneEvent zoneEvent, bool button);
+
+    virtual bool onTouch(ZoneEvent zoneEvent, vector2 touchInfo);
 };
 
 

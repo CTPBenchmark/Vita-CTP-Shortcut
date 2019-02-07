@@ -7,23 +7,22 @@ static uint16_t ime_input_text_utf16[SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1];
 static uint8_t ime_input_text_utf8[SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1];
 		
 void IME::utf16_to_utf8(uint16_t *src, uint8_t *dst) {
-	int i;
 	for (i = 0; src[i]; i++) {
 		if ((src[i] & 0xFF80) == 0) {
-			*(dst++) = src[i] & 0xFF;
+			*(dst++) = (uint8_t) (src[i] & 0xFF);
 		} else if((src[i] & 0xF800) == 0) {
-			*(dst++) = ((src[i] >> 6) & 0xFF) | 0xC0;
-			*(dst++) = (src[i] & 0x3F) | 0x80;
+			*(dst++) = (uint8_t) (((src[i] >> 6) & 0xFF) | 0xC0);
+			*(dst++) = (uint8_t) ((src[i] & 0x3F) | 0x80);
 		} else if((src[i] & 0xFC00) == 0xD800 && (src[i + 1] & 0xFC00) == 0xDC00) {
-			*(dst++) = (((src[i] + 64) >> 8) & 0x3) | 0xF0;
-			*(dst++) = (((src[i] >> 2) + 16) & 0x3F) | 0x80;
-			*(dst++) = ((src[i] >> 4) & 0x30) | 0x80 | ((src[i + 1] << 2) & 0xF);
-			*(dst++) = (src[i + 1] & 0x3F) | 0x80;
+			*(dst++) = (uint8_t) ((((src[i] + 64) >> 8) & 0x3) | 0xF0);
+			*(dst++) = (uint8_t) ((((src[i] >> 2) + 16) & 0x3F) | 0x80);
+			*(dst++) = (uint8_t) (((src[i] >> 4) & 0x30) | 0x80 | ((src[i + 1] << 2) & 0xF));
+			*(dst++) = (uint8_t) ((src[i + 1] & 0x3F) | 0x80);
 			i += 1;
 		} else {
-			*(dst++) = ((src[i] >> 12) & 0xF) | 0xE0;
-			*(dst++) = ((src[i] >> 6) & 0x3F) | 0x80;
-			*(dst++) = (src[i] & 0x3F) | 0x80;
+			*(dst++) = (uint8_t) (((src[i] >> 12) & 0xF) | 0xE0);
+			*(dst++) = (uint8_t) (((src[i] >> 6) & 0x3F) | 0x80);
+			*(dst++) = (uint8_t) ((src[i] & 0x3F) | 0x80);
 		}
 	}
 
@@ -31,13 +30,12 @@ void IME::utf16_to_utf8(uint16_t *src, uint8_t *dst) {
 }
 
 void IME::utf8_to_utf16(uint8_t *src, uint16_t *dst) {
-	int i;
 	for (i = 0; src[i];) {
 		if ((src[i] & 0xE0) == 0xE0) {
-			*(dst++) = ((src[i] & 0x0F) << 12) | ((src[i + 1] & 0x3F) << 6) | (src[i + 2] & 0x3F);
+			*(dst++) = (uint16_t) (((src[i] & 0x0F) << 12) | ((src[i + 1] & 0x3F) << 6) | (src[i + 2] & 0x3F));
 			i += 3;
 		} else if ((src[i] & 0xC0) == 0xC0) {
-			*(dst++) = ((src[i] & 0x1F) << 6) | (src[i + 1] & 0x3F);
+			*(dst++) = (uint16_t) (((src[i] & 0x1F) << 6) | (src[i + 1] & 0x3F));
 			i += 2;
 		} else {
 			*(dst++) = src[i];
@@ -48,7 +46,7 @@ void IME::utf8_to_utf16(uint8_t *src, uint16_t *dst) {
 	*dst = '\0';
 }
  
-void IME::initImeDialog(const char *title, const char *initialText, int maxTextLength, unsigned int imeType) {
+void IME::initImeDialog(const char *title, const char *initialText, int maxTextLength, unsigned int type, unsigned int option) {
     // Convert UTF8 to UTF16
 	utf8_to_utf16((uint8_t *)title, ime_title_utf16);
 	utf8_to_utf16((uint8_t *)initialText, ime_initial_text_utf16);
@@ -59,7 +57,10 @@ void IME::initImeDialog(const char *title, const char *initialText, int maxTextL
 	param.sdkVersion = 0x03150021,
 	param.supportedLanguages = 0x0001FFFF;
 	param.languagesForced = SCE_TRUE;
-	param.type = imeType;
+	param.type = type;
+	param.option = option;
+	if (option == SCE_IME_OPTION_MULTILINE)
+		param.dialogMode = SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;
 	param.title = ime_title_utf16;
 	param.maxTextLength = (SceUInt32) maxTextLength;
 	param.initialText = ime_initial_text_utf16;
@@ -74,7 +75,7 @@ void IME::oslOskGetText(char *text){
 	strcpy(text,(char*)ime_input_text_utf8);
 }
 
-std::string IME::getUserText(const char *title , const char *showtext, unsigned int imeType) {
+std::string IME::getUserText(const char *title , const char *showtext, unsigned int type, unsigned int option) {
     bool shown_dial = false;
    
     char userText[512];
@@ -87,7 +88,7 @@ std::string IME::getUserText(const char *title , const char *showtext, unsigned 
         vita2d_clear_screen();
        
         if (!shown_dial) {
-            initImeDialog(title, userText, 128, imeType);
+            initImeDialog(title, userText, 128, type, option);
             shown_dial = true;
             }
        

@@ -11,7 +11,7 @@
 
 class I18n {
     private:
-        json_t *i18n_file;
+        json_t *i18nFile;
         int currentLang, defaultLang;
 
         const char* getLanguageCode(int lang);

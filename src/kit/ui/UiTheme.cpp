@@ -12,10 +12,10 @@ UiTheme::UiTheme(const colorSchemeHEX &primary, const colorSchemeHEX &secondary)
 
 }
 
-unsigned int UiTheme::convertHexToRGBA(const char *hex) {
+unsigned int UiTheme::convertHexToRGBA(const char *hex, unsigned int alpha) {
     int r, g, b;
     sscanf(hex, "#%02x%02x%02x", &r, &g, &b);
-    return (unsigned int) RGBA8(r, g, b, 255);
+    return RGBA8(r, g, b, alpha);
 }
 
 colorSchemeRGBA UiTheme::colorSchemeHEXToColorShemeRGBA(colorSchemeHEX hex) {

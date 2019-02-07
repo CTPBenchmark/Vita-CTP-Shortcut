@@ -13,7 +13,6 @@ protected:
 public:
     Touch *touch;
     Pad *pad;
-    I18n *i18n;
     Config *config;
     Utils();
     virtual void read();

@@ -4,8 +4,11 @@
 
 #include <cstdio>
 #include <vita2d.h>
-#define PRIMARY_BACKGROUND_COLOR RGBA(225, 226, 225)
-#define SECONDARY_BACKGROUND_COLOR RGBA(245, 245, 246)
+
+typedef enum TypeTheme {
+    THEME_PRIMARY,
+    THEME_SECONDARY
+} TypeTheme;
 
 typedef struct{
     const char *normal;
@@ -29,7 +32,6 @@ private:
     colorSchemeRGBA secondaryRGBA;
 
     colorSchemeRGBA colorSchemeHEXToColorShemeRGBA(colorSchemeHEX hex);
-    unsigned int convertHexToRGBA(const char *hex);
 
 public:
     UiTheme();
@@ -42,6 +44,8 @@ public:
     const colorSchemeRGBA &getPrimaryRGBA() const;
 
     const colorSchemeRGBA &getSecondaryRGBA() const;
+
+    unsigned int convertHexToRGBA(const char *hex, unsigned int alpha = 255);
 
 };
 

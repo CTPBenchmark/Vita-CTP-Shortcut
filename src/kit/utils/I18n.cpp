@@ -24,13 +24,13 @@ void I18n::setCurrentLanguage(int lang) {
     currentLang = lang;
 
     sprintf(languageCode, "app0:i18n/%s.json", getLanguageCode(lang));
-    i18n_file = json_load_file(languageCode, 0, &error);
+    i18nFile = json_load_file(languageCode, 0, &error);
 }
 
 std::map<std::string, std::string> I18n::getI18nByCat(std::string cat) {
     std::map<std::string, std::string> result;
 
-    json_t *obj = json_object_get(i18n_file, cat.c_str());
+    json_t *obj = json_object_get(i18nFile, cat.c_str());
     const char *key;
     json_t *value;
 

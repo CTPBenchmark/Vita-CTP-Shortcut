@@ -16,7 +16,6 @@ class App {
 private:
     void checkExit();
     void initVita2d();
-    void debug();
 
 protected:
     Utils *utils;
@@ -24,9 +23,11 @@ protected:
     ViewsController *viewsController;
     std::map<std::string, View *> views;
     int run;
+    std::string oldViewName;
 
     virtual void beforeView();
     virtual void afterView();
+    virtual void debug();
 public:
     App(const char *firstView);
 
