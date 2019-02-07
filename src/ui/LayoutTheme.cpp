@@ -72,6 +72,6 @@ int LayoutTheme::getIconColor() {
 
 void LayoutTheme::display() {
     background->display();
-    vita2d_draw_texture(logo, 25, 25);
+    vita2d_draw_texture(logo, 480 - (LOGO_WIDTH / 2), 10);
 }
 

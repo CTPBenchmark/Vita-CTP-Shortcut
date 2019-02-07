@@ -16,10 +16,10 @@ protected:
     void initTheme();
     void init();
 public:
-    UiTheme *theme;
-    UiTexts *texts;
-    UiButtons *buttons;
-    UiIcons *icons;
+    UiTheme     *theme;
+    UiTexts     *texts;
+    UiButtons   *buttons;
+    UiIcons     *icons;
     LayoutTheme *layoutTheme;
 
     Ui();

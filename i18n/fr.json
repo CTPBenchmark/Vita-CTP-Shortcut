@@ -1,5 +1,8 @@
 {
- "test" : {
-    "phrase" : "phrase en français"
+ "welcome" : {
+    "settings" : "Options",
+    "website" : "ActualitÉs",
+    "forum" : "Forum",
+    "exit" : "Quitter"
   }
 }

@@ -3,15 +3,14 @@
 
 #include "../kit/core/View.hh"
 
+#define WELCOME_NUMBER_OF_BUTTONS 4
+
 class Welcome: public View {
 private:
-    ZoneEvent buttonsTZE;
-    ZoneEvent i18nTZE;
-    ZoneEvent iconsTZE;
-    ZoneEvent textsTZE;
-    ZoneEvent imeTZE;
-    ZoneEvent exitTZE;
-    int selector;
+    ZoneEvent forumZE, websiteZE, optionsZE, exitZE;
+    int selector = -1;
+    I18n *i18n;
+    int touchMode = 1;
 
 public:
     Welcome(const char *name);

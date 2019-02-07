@@ -1,5 +1,8 @@
 {
-  "test" : {
-    "phrase" : "english sentence"
+  "welcome" : {
+    "settings" : "Settings",
+    "website" : "News",
+    "forum" : "Forum",
+    "exit" : "Exit"
   }
 }

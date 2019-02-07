@@ -6,6 +6,7 @@
 #include "utils/Touch.hpp"
 #include "utils/Pad.hpp"
 #include "../utils/Config.hh"
+#include "../utils/WebModal.hh"
 
 class Utils {
 protected:
@@ -14,6 +15,8 @@ public:
     Touch *touch;
     Pad *pad;
     Config *config;
+    I18n *i18n;
+    WebModal *webModal;
     Utils();
     virtual void read();
 };

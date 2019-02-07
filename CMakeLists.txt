@@ -85,11 +85,16 @@ add_executable(${SHORT_NAME}
         src/kit/utils/Touch.cpp
 
         src/ui/Background.cpp
+        src/ui/LayoutTheme.cpp
+        src/ui/LayoutTheme.hh
+
+        src/utils/Config.cpp
+        src/utils/WebModal.cpp
 
         src/views/Welcome.cpp
 
         src/main.cpp
-        src/ui/LayoutTheme.cpp src/ui/LayoutTheme.hh src/utils/Config.cpp src/utils/Config.hh)
+        )
 
 target_link_libraries(${SHORT_NAME}
         vita2d
@@ -100,6 +105,7 @@ target_link_libraries(${SHORT_NAME}
         SceTouch_stub
         SceCommonDialog_stub
         SceAppUtil_stub
+        SceAppMgr_stub
         SceRegistryMgr_stub
         jansson
         freetype

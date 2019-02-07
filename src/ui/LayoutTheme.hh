@@ -1,6 +1,8 @@
 #ifndef CTP_SHORTCUT_LAYOUTTHEME_HH
 #define CTP_SHORTCUT_LAYOUTTHEME_HH
 
+#define LOGO_WIDTH 370
+
 #include <vita2d.h>
 #include "../utils/Config.hh"
 #include "Background.hh"

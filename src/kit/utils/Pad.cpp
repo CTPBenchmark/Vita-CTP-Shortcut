@@ -59,6 +59,8 @@ PadButtons Pad::resetPadButtons(PadButtons padButtons) {
 	padButtons.volup = false;
 	padButtons.voldown = false;
 
+	padButtons.clicking = false;
+
 	return padButtons;
 }
 
@@ -117,6 +119,12 @@ PadButtons Pad::readButtons(unsigned int buttons, PadButtons padButtons) {
 	padButtons.square = this->getButtonStatus(buttons, SCE_CTRL_SQUARE);
 	padButtons.cross = buttonAssign ? this->getButtonStatus(buttons, SCE_CTRL_CIRCLE) : this->getButtonStatus(buttons, SCE_CTRL_CROSS);
 	padButtons.circle = buttonAssign ? this->getButtonStatus(buttons, SCE_CTRL_CROSS) : this->getButtonStatus(buttons, SCE_CTRL_CIRCLE);
+
+	padButtons.clicking = 	padButtons.select || padButtons.start ||
+							padButtons.up || padButtons.right || padButtons.down || padButtons.left ||
+							padButtons.leftTrigger || padButtons.rightTrigger ||
+							padButtons.voldown || padButtons.volup ||
+							padButtons.triangle || padButtons.square || padButtons.cross || padButtons.circle;
 
 	return padButtons;
 }
