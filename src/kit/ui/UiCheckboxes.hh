@@ -14,7 +14,7 @@ typedef enum UiCheckboxesStatus {
     CHECKED = 1
 } UiCheckboxesStatus;
 
-typedef struct ZoneEventCheckbox : public ZoneEvent {
+typedef struct ZoneEventCheckboxes : public ZoneEvent {
     UiCheckboxesStatus status;
 } ZoneEventCheckboxes;
 
@@ -28,13 +28,11 @@ public:
     UiCheckboxes(UiTheme *theme);
     UiCheckboxes(UiTheme *theme, UiIcons *icons);
 
-    ZoneEventCheckbox draw(int x, int y, UiCheckboxesStatus status, bool selector, unsigned int size = DEFAULT_CHECKBOX_SIZE);
+    ZoneEventCheckboxes draw(int x, int y, UiCheckboxesStatus status, bool selector, unsigned int size = DEFAULT_CHECKBOX_SIZE);
 
     UiCheckboxesStatus onPadAuto(ZoneEventCheckboxes zoneEvent, bool button);
     UiCheckboxesStatus onTouchAuto(ZoneEventCheckboxes zoneEvent, vector2 touchInfo);
 
-    bool onPad(ZoneEventCheckboxes zoneEvent, bool button);
-    bool onTouch(ZoneEventCheckboxes zoneEvent, vector2 touchInfo);
 };
 
 

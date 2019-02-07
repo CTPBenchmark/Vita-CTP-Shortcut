@@ -78,6 +78,8 @@ add_executable(${SHORT_NAME}
         src/kit/ui/UiIcons.cpp
         src/kit/ui/UiButtons.cpp
         src/kit/ui/UiTexts.cpp
+        src/kit/ui/UiCheckboxes.cpp
+        src/kit/ui/UiTextFields.cpp
 
         src/kit/utils/I18n.cpp
         src/kit/utils/IME.cpp
@@ -93,9 +95,9 @@ add_executable(${SHORT_NAME}
 
         src/views/Welcome.cpp
         src/views/settings/Settings.cpp
+        src/views/settings/Customization.cpp
 
         src/main.cpp
-
         )
 
 target_link_libraries(${SHORT_NAME}

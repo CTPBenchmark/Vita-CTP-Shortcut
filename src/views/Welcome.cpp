@@ -6,11 +6,11 @@ Welcome::Welcome(const char *name) : View(name) {
 
 void Welcome::contents() {
 
-    optionsZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["settings"], 960 - (optionsZE.width) - 10, 10, THEME_SECONDARY, selector == 1, ICON_MDI_SETTINGS);
+    optionsZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["settings"], 960 - (optionsZE.width) - 10, 10, THEME_SECONDARY, utils->selector == 1, ICON_MDI_SETTINGS);
 
-    websiteZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["website"], 480 - (websiteZE.width / 2), 180, THEME_PRIMARY, selector == 2, ICON_MDI_NEWSPAPER);
-    forumZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["forum"], 480 - (forumZE.width / 2), 180 + websiteZE.height + 20, THEME_PRIMARY, selector == 3, ICON_MDI_FORUM);
-    exitZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["exit"], 480 - (exitZE.width / 2), 450, THEME_PRIMARY, selector == WELCOME_NUMBER_OF_BUTTONS, ICON_MDI_EXIT_TO_APP);
+    websiteZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["website"], 480 - (websiteZE.width / 2), 180, THEME_PRIMARY, utils->selector == 2, ICON_MDI_NEWSPAPER);
+    forumZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["forum"], 480 - (forumZE.width / 2), 180 + websiteZE.height + 20, THEME_PRIMARY, utils->selector == 3, ICON_MDI_FORUM);
+    exitZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["exit"], 480 - (exitZE.width / 2), 450, THEME_PRIMARY, utils->selector == WELCOME_NUMBER_OF_BUTTONS, ICON_MDI_EXIT_TO_APP);
 }
 
 void Welcome::controls() {
@@ -39,33 +39,28 @@ void Welcome::controls() {
 
 
     //pad
-    if (touchMode == 0) {
+    if (utils->touchMode == 0) {
         if (utils->pad->pressed.down) {
-            selector++;
+            utils->selector++;
         }
         if (utils->pad->pressed.up) {
-            selector--;
+            utils->selector--;
         }
 
-        if (selector > WELCOME_NUMBER_OF_BUTTONS) {
-            selector = 1;
+        if (utils->selector > WELCOME_NUMBER_OF_BUTTONS) {
+            utils->selector = 1;
         }
 
-        if (selector < 1) {
-            selector = WELCOME_NUMBER_OF_BUTTONS;
+        if (utils->selector < 1) {
+            utils->selector = WELCOME_NUMBER_OF_BUTTONS;
         }
     }
 
+}
 
-    //touch & pad switch
-    if (utils->touch->clicking && touchMode == 0) {
-        touchMode = 1;
-        selector = -1;
+void Welcome::beforeEnter() {
+    if (utils->touchMode == 0) {
+        utils->selector = 2;
     }
-    if (utils->pad->held.clicking && touchMode == 1) {
-        touchMode = 0;
-        selector = 2;
-    }
-
 }
 

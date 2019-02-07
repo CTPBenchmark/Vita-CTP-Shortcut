@@ -4,5 +4,12 @@
     "website" : "News",
     "forum" : "Forum",
     "exit" : "Exit"
+  },
+  "settings" : {
+    "customization" : "Background Customization",
+    "autoLaunchInstruction" : "At launch, open automatically:",
+    "theNews" : "the news",
+    "theForum" : "the forum",
+    "back" : "Back"
   }
 }

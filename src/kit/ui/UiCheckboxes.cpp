@@ -12,7 +12,7 @@ UiCheckboxes::UiCheckboxes(UiTheme *theme, UiIcons *icons) : theme(theme), icons
     this->selectorColor = theme->convertHexToRGBA(theme->getSecondaryHEX().light, 150);
 }
 
-ZoneEventCheckbox UiCheckboxes::draw(int x, int y, UiCheckboxesStatus status, bool selector, unsigned int size) {
+ZoneEventCheckboxes UiCheckboxes::draw(int x, int y, UiCheckboxesStatus status, bool selector, unsigned int size) {
     zoneEvent.x = x;
     zoneEvent.y = y;
     zoneEvent.width = size * 2;

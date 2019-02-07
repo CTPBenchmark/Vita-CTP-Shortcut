@@ -6,10 +6,12 @@ Ui::Ui() {
 }
 
 void Ui::init() {
-    this->theme     = new UiTheme(primaryThemeColor, secondaryThemeColor);
-    this->texts     = new UiTexts(this->theme);
-    this->icons     = new UiIcons(this->theme);
-    this->buttons   = new UiButtons(this->theme, this->texts, this->icons);
+    this->theme         = new UiTheme(primaryThemeColor, secondaryThemeColor);
+    this->texts         = new UiTexts(this->theme);
+    this->icons         = new UiIcons(this->theme);
+    this->buttons       = new UiButtons(this->theme, this->texts, this->icons);
+    this->checkboxes    = new UiCheckboxes(this->theme, this->icons);
+    this->textFields    = new UiTextFields(this->theme, this->texts, this->icons);
 }
 
 void Ui::initTheme() {

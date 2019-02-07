@@ -7,6 +7,8 @@
 #include "ui/UiTexts.hpp"
 #include "ui/UiButtons.hpp"
 #include "../ui/LayoutTheme.hh"
+#include "ui/UiCheckboxes.hh"
+#include "ui/UiTextFields.hh"
 
 
 class Ui {
@@ -20,6 +22,9 @@ public:
     UiTexts     *texts;
     UiButtons   *buttons;
     UiIcons     *icons;
+    UiCheckboxes *checkboxes;
+    UiTextFields *textFields;
+
     LayoutTheme *layoutTheme;
 
     Ui();

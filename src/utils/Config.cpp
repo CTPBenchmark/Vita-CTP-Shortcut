@@ -94,7 +94,7 @@ void Config::saveConfig() {
             "s:{s:i, s:i, s:i, s:i},"
             "s:{s:i, s:i, s:i, s:i}, "
             "s:{s:i, s:i, s:i, s:i},"
-            "s:{s:b,s:b},",
+            "s:{s:b,s:b},"
             "s:f,"
             "s:b"
             "}",
@@ -106,14 +106,43 @@ void Config::saveConfig() {
             "speed", speed,
             "customisation", customisation
     );
+
     sceIoRemove(CONFIG_FILE_PATH);
     json_dump_file(json, CONFIG_FILE_PATH, 0);
 }
 
 void Config::avoidOldConfig() {
-    if (json_object_get(json, "logo") != nullptr) {
+    if (json_object_get(json, "foreground") == nullptr) {
         sceIoRemove(CONFIG_FILE_PATH);
         this->createConfig();
     }
+}
+
+void Config::setBackgroundColor(const RGBAColor &backgroundColor) {
+    Config::backgroundColor = backgroundColor;
+}
+
+void Config::setIconsColor(const RGBAColor &iconsColor) {
+    Config::iconsColor = iconsColor;
+}
+
+void Config::setForegroundColor(const RGBAColor &foregroundColor) {
+    Config::foregroundColor = foregroundColor;
+}
+
+void Config::setLaunchNews(bool launchNews) {
+    Config::launchNews = launchNews;
+}
+
+void Config::setLaunchForum(bool launchForum) {
+    Config::launchForum = launchForum;
+}
+
+void Config::setCustomisation(bool customisation) {
+    Config::customisation = customisation;
+}
+
+void Config::setSpeed(float speed) {
+    Config::speed = speed;
 }
 

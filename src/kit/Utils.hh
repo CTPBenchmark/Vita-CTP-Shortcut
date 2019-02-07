@@ -12,6 +12,8 @@ class Utils {
 protected:
     virtual void init();
 public:
+    int touchMode = 1;
+    int selector = -1;
     Touch *touch;
     Pad *pad;
     Config *config;

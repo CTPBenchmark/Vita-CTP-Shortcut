@@ -8,14 +8,13 @@
 class Welcome: public View {
 private:
     ZoneEvent forumZE, websiteZE, optionsZE, exitZE;
-    int selector = -1;
-    I18n *i18n;
-    int touchMode = 1;
 
 public:
     Welcome(const char *name);
     void contents() override;
     void controls() override;
+
+    void beforeEnter() override;
 };
 
 #endif //VITAMATERIALKIT_WELCOME_HH

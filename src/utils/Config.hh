@@ -44,6 +44,20 @@ public:
 
     void saveConfig();
 
+    void setBackgroundColor(const RGBAColor &backgroundColor);
+
+    void setIconsColor(const RGBAColor &iconsColor);
+
+    void setForegroundColor(const RGBAColor &foregroundColor);
+
+    void setLaunchNews(bool launchNews);
+
+    void setLaunchForum(bool launchForum);
+
+    void setCustomisation(bool customisation);
+
+    void setSpeed(float speed);
+
 
 };
 
