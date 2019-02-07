@@ -7,6 +7,6 @@ CustomApp::CustomApp(const char *firstView) : App(firstView) {
 }
 
 void CustomApp::beforeView() {
-    ui->layoutTheme->display();
+    ui->layoutTheme->display(this->viewsController->getActualView() == "Welcome");
 }
 

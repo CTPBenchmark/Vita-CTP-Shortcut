@@ -92,8 +92,10 @@ add_executable(${SHORT_NAME}
         src/utils/WebModal.cpp
 
         src/views/Welcome.cpp
+        src/views/settings/Settings.cpp
 
         src/main.cpp
+
         )
 
 target_link_libraries(${SHORT_NAME}

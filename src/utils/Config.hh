@@ -11,16 +11,18 @@
 #define CONFIG_FILE_NAME "config.json"
 #define CONFIG_FILE_PATH CONFIG_DIRECTORY_PATH CONFIG_FILE_NAME
 
-typedef struct RGBColor {
+typedef struct RGBAColor {
     unsigned int r;
     unsigned int g;
     unsigned int b;
-} RGBColor;
+    unsigned int a;
+} RGBAColor;
 
 class Config {
 private:
-    RGBColor backgroundColor, iconsColor;
+    RGBAColor backgroundColor, iconsColor, foregroundColor;
     bool launchNews, launchForum, customisation;
+    float speed;
     json_t *json;
 
     void createConfig();
@@ -30,8 +32,11 @@ private:
 public:
     Config();
 
-    const RGBColor &getBackgroundColor() const;
-    const RGBColor &getIconsColor() const;
+    const RGBAColor &getBackgroundColor() const;
+    const RGBAColor &getIconsColor() const;
+    const RGBAColor &getForegroundColor() const;
+
+    float getSpeed() const;
 
     bool isLaunchNews() const;
     bool isLaunchForum() const;

@@ -18,9 +18,11 @@ private:
     vita2d_texture *initLogo();
     int getIconColor();
     int getBackgroundColor();
+    int getForegroundColor();
+    float getSpeed();
 public:
     LayoutTheme(Config *config);
-    void display();
+    void display(bool displayLogo);
 };
 
 

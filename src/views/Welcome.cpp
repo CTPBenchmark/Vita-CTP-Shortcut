@@ -6,13 +6,6 @@ Welcome::Welcome(const char *name) : View(name) {
 
 void Welcome::contents() {
 
-    ui->texts->drawF(0, 0, Body1, (unsigned int)RGBA8(255, 0, 0, 255), false,
-                     "TouchMode: %d\nSelector: %d\nCtrl: %s",
-                     touchMode,
-                     selector,
-                     utils->pad->held.clicking ? "true" : "false"
-    );
-
     optionsZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["settings"], 960 - (optionsZE.width) - 10, 10, THEME_SECONDARY, selector == 1, ICON_MDI_SETTINGS);
 
     websiteZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["website"], 480 - (websiteZE.width / 2), 180, THEME_PRIMARY, selector == 2, ICON_MDI_NEWSPAPER);
@@ -25,7 +18,7 @@ void Welcome::controls() {
 //events
     if (ui->buttons->onTouch(optionsZE, utils->touch->lastClickPoint) ||
         ui->buttons->onPad(optionsZE, utils->pad->pressed.cross)) {
-        viewsController->setActualView("ButtonsSample");
+        viewsController->setActualView("Settings");
     }
 
     if (ui->buttons->onTouch(websiteZE, utils->touch->lastClickPoint) ||

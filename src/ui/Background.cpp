@@ -10,7 +10,7 @@ Background::Background() {
 	this->backgroundColor = RGBA8(0,0,0,0);
 	this->iconsColor = RGBA8(255,255,255,255);
 	this->foregroundColor = RGBA8(0,0,0,0);
-	this->speed = 0.5;
+	this->speed = DEFAULT_SPEED;
 	this->position = 0;
 	this->texture = nullptr;
 	this->imgWidth = 0;
@@ -25,7 +25,7 @@ Background::Background(vita2d_texture* texture, int backgroundColor, int iconsCo
 	this->backgroundColor = backgroundColor;
 	this->iconsColor = iconsColor;
 	this->foregroundColor = RGBA8(0,0,0,0);
-	this->speed = 0.5;
+	this->speed = DEFAULT_SPEED;
 	this->position = 0;
 	this->calc = 0;
 }
