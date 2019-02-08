@@ -7,18 +7,30 @@
 class Customization : public View {
 private:
     ZoneEvent backgroundButtonZE, iconsButtonZE, foregroundButtonZE, speedTextFieldZE, backButtonZE;
+    ZoneEvent redZE, greenZE, blueZE, alphaZE;
     ZoneEventCheckboxes customizationCheckboxZE;
     UiCheckboxesStatus customizationCheckbox;
     int CUSTOMIZATION_NUMBER_OF_BUTTONS;
+    std::map<std::string, std::string> i18nCustomization;
+    std::string chosen;
+    RGBAColor rgbaCustomization;
+
+    unsigned int getColorPart(std::string name, unsigned int value);
+    void refreshBackground();
 public:
     Customization(const std::string &name);
 
     void contents() override;
-
     void controls() override;
 
-    void beforeEnter() override;
+    void contentsDefault();
+    void contentsCustomizeColors();
 
+    void controlsDefault();
+    void controlsCustomizeColors();
+
+
+    void beforeEnter() override;
     void beforeExit() override;
 };
 

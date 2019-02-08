@@ -21,9 +21,11 @@ void Utils::read() {
     touch->read();
 
     //touch & pad switch
+    if (this->touch->clicking) {
+        selector = -1;
+    }
     if (this->touch->clicking && touchMode == 0) {
         touchMode = 1;
-        selector = -1;
     }
     if (this->pad->held.clicking && touchMode == 1) {
         touchMode = 0;

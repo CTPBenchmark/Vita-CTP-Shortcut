@@ -11,5 +11,19 @@
     "theNews" : "the news",
     "theForum" : "the forum",
     "back" : "Back"
+  },
+  "customization" : {
+    "customizationInstruction" : "Customization of the application background",
+    "background": "Background",
+    "icons": "Icons",
+    "foreground": "Foreground",
+    "speed": "Speed",
+    "save": "Save",
+
+    "red": "Red",
+    "green": "Green",
+    "blue": "Blue",
+    "alpha": "Alpha",
+    "validate": "Validate"
   }
 }

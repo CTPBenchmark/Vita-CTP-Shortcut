@@ -6,11 +6,11 @@ Welcome::Welcome(const char *name) : View(name) {
 
 void Welcome::contents() {
 
-    optionsZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["settings"], 960 - (optionsZE.width) - 10, 10, THEME_SECONDARY, utils->selector == 1, ICON_MDI_SETTINGS);
+    optionsZE = ui->buttons->containedDraw(i18nWelcome["settings"], 960 - (optionsZE.width) - 10, 10, THEME_SECONDARY, utils->selector == 1, ICON_MDI_SETTINGS);
 
-    websiteZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["website"], 480 - (websiteZE.width / 2), 180, THEME_PRIMARY, utils->selector == 2, ICON_MDI_NEWSPAPER);
-    forumZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["forum"], 480 - (forumZE.width / 2), 180 + websiteZE.height + 20, THEME_PRIMARY, utils->selector == 3, ICON_MDI_FORUM);
-    exitZE = ui->buttons->containedDraw(utils->i18n->getI18nByCat("welcome")["exit"], 480 - (exitZE.width / 2), 450, THEME_PRIMARY, utils->selector == WELCOME_NUMBER_OF_BUTTONS, ICON_MDI_EXIT_TO_APP);
+    websiteZE = ui->buttons->containedDraw(i18nWelcome["website"], 480 - (websiteZE.width / 2), 180, THEME_PRIMARY, utils->selector == 2, ICON_MDI_NEWSPAPER);
+    forumZE = ui->buttons->containedDraw(i18nWelcome["forum"], 480 - (forumZE.width / 2), 180 + websiteZE.height + 20, THEME_PRIMARY, utils->selector == 3, ICON_MDI_FORUM);
+    exitZE = ui->buttons->containedDraw(i18nWelcome["exit"], 480 - (exitZE.width / 2), 450, THEME_PRIMARY, utils->selector == WELCOME_NUMBER_OF_BUTTONS, ICON_MDI_EXIT_TO_APP);
 }
 
 void Welcome::controls() {
@@ -62,5 +62,7 @@ void Welcome::beforeEnter() {
     if (utils->touchMode == 0) {
         utils->selector = 2;
     }
+
+    i18nWelcome = utils->i18n->getI18nByCat("welcome");
 }
 

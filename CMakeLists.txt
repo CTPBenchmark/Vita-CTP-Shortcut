@@ -62,12 +62,17 @@ file(GLOB res_files RELATIVE
 )
 add_resources(ctp_res ${res_files})
 
+
+
 add_executable(${SHORT_NAME}
   ${ctp_res}
         src/kit/core/App.cpp
         src/kit/core/ViewsController.cpp
         src/kit/core/View.cpp
         src/kit/core/UiEvent.cpp
+
+        src/kit/lib/unilib/unicode.cpp
+        src/kit/lib/unilib/utf8.cpp
 
         src/kit/Ui.cpp
         src/kit/Utils.cpp
@@ -92,6 +97,7 @@ add_executable(${SHORT_NAME}
 
         src/utils/Config.cpp
         src/utils/WebModal.cpp
+        src/utils/CTPApi.cpp
 
         src/views/Welcome.cpp
         src/views/settings/Settings.cpp

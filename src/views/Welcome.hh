@@ -8,6 +8,7 @@
 class Welcome: public View {
 private:
     ZoneEvent forumZE, websiteZE, optionsZE, exitZE;
+    std::map<std::string, std::string> i18nWelcome;
 
 public:
     Welcome(const char *name);

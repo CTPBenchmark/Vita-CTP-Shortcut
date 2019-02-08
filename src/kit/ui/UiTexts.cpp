@@ -1,6 +1,6 @@
 #include "UiTexts.hpp"
 
-#include <stdarg.h>
+using namespace ufal::unilib;
 
 UiTexts::UiTexts() {
     family = "Roboto";
@@ -18,6 +18,7 @@ UiTexts::UiTexts(std::string family) {
 UiTexts::UiTexts(std::string family, UiTheme *theme) {
     this->theme = theme;
     this->family = std::move(family);
+
 }
 
 UiTexts::~UiTexts() {
@@ -124,7 +125,14 @@ TextData UiTexts::getTextData(std::string text, TextStyle textStyle, bool italic
 
 //set text to uppercase
 std::string UiTexts::toUppercase(std::string text) {
-    std::transform(text.begin(), text.end(),text.begin(), ::toupper);
+
+    utf8::decode(text, text32);
+
+    for (auto&& chr :  text32) chr = unicode::uppercase(chr);
+
+    utf8::encode(text32, text);
+
+
     return text;
 }
 

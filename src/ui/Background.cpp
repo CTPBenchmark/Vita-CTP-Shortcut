@@ -52,7 +52,7 @@ void Background::setTexture(vita2d_texture* texture){
 	this->imgHeight = vita2d_texture_get_height(texture);
 }
 
-void Background::setSpeed(float speed){
+void Background::setSpeed(int speed){
 	this->speed = speed;
 }
 
@@ -75,7 +75,7 @@ float Background::getPosition(){
 
 // Display
 void Background::display() {
-	this->position -= speed;
+	this->position -= (speed * 0.1);
 	this->calc = (int)floor(-position / 1000);
 
 	 for (int _i = calc; _i < (4 * (calc + 1)); _i++) {

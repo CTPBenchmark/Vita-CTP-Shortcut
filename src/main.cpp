@@ -10,7 +10,7 @@ int main() {
     auto *settings = new Settings("Settings");
     auto *customization = new Customization("Customization");
 
-    auto *app = new CustomApp("Settings");
+    auto *app = new CustomApp("Welcome");
     app->insertView(welcome);
     app->insertView(settings);
     app->insertView(customization);

@@ -39,7 +39,7 @@ private:
 
 	public:
 		IME();
-		std::string getUserText(const char *title, const char *showText = "", unsigned int type = SCE_IME_TYPE_BASIC_LATIN, unsigned int option = 0);
+		std::string getUserText(const char *title, const char *showText = "", unsigned int type = SCE_IME_TYPE_BASIC_LATIN, unsigned int maxTextLength = SCE_IME_DIALOG_MAX_TITLE_LENGTH, unsigned int option = 0);
 		SceCommonDialogStatus getStatus() const;
 };
 

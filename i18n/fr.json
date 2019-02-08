@@ -1,7 +1,7 @@
 {
  "welcome" : {
     "settings" : "Options",
-    "website" : "ActualitÉs",
+    "website" : "Actualités",
     "forum" : "Forum",
     "exit" : "Quitter"
   },
@@ -11,5 +11,19 @@
     "theNews" : "les actualités",
     "theForum" : "le forum",
     "back" : "Retour"
+  },
+  "customization" : {
+    "customizationInstruction" : "Personnalisation du fond de l'application",
+    "background": "Arrière plan",
+    "icons": "Icônes",
+    "foreground": "Premier plan",
+    "speed": "Vitesse",
+    "save": "Sauvegarder",
+
+    "red": "Rouge",
+    "green": "Vert",
+    "blue": "Bleue",
+    "alpha": "Alpha",
+    "validate": "Valider"
   }
 }

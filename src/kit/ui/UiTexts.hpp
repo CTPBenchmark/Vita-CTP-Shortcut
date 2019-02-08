@@ -1,17 +1,20 @@
 #ifndef VITA_MATERIAL_KIT_UI_TEXT_HPP
 #define VITA_MATERIAL_KIT_UI_TEXT_HPP
 
+#include "UiTheme.hpp"
 
 #include <map>
 #include <iostream>
 #include <math.h>
 #include <algorithm>
+#include <cstdarg>
 
 #include <psp2/io/fcntl.h>
 #include <psp2/io/dirent.h>
 
 #include "vita2d.h"
-#include "UiTheme.hpp"
+#include "../lib/unilib/unicode.h"
+#include "../lib/unilib/utf8.h"
 
 
 #define TEXTS_DEFAULT_FONT_COLOR (unsigned int) RGBA8(0, 0, 0, 255)
@@ -57,6 +60,7 @@ private:
     UiTheme *theme;
     std::pair<std::string, unsigned int> keyFont;
     std::string family, fontPath;
+    std::u32string text32;
 
     std::string toUppercase(std::string text);
     void drawFinal(int x, int y, TextStyle textStyle, unsigned int color, bool italic, std::string text);

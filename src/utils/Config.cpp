@@ -28,7 +28,7 @@ const RGBAColor &Config::getForegroundColor() const {
     return foregroundColor;
 }
 
-float Config::getSpeed() const {
+int Config::getSpeed() const {
     return speed;
 }
 
@@ -51,7 +51,7 @@ void Config::createConfig() {
             "s:{s:i, s:i, s:i, s:i}, "
             "s:{s:i, s:i, s:i, s:i},"
             "s:{s:b,s:b},"
-            "s:f,"
+            "s:i,"
             "s:b"
             "}",
 
@@ -85,7 +85,7 @@ void Config::loadConfig() {
     foregroundColor.b = (unsigned int) json_number_value(json_object_get(json_object_get(json, "foreground"), "b"));
     foregroundColor.a = (unsigned int) json_number_value(json_object_get(json_object_get(json, "foreground"), "a"));
 
-    speed = (float)json_number_value(json_object_get(json, "speed"));
+    speed = (int)json_number_value(json_object_get(json, "speed"));
 }
 
 void Config::saveConfig() {
@@ -95,7 +95,7 @@ void Config::saveConfig() {
             "s:{s:i, s:i, s:i, s:i}, "
             "s:{s:i, s:i, s:i, s:i},"
             "s:{s:b,s:b},"
-            "s:f,"
+            "s:i,"
             "s:b"
             "}",
 
@@ -142,7 +142,7 @@ void Config::setCustomisation(bool customisation) {
     Config::customisation = customisation;
 }
 
-void Config::setSpeed(float speed) {
+void Config::setSpeed(int speed) {
     Config::speed = speed;
 }
 

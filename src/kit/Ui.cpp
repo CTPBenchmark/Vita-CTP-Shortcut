@@ -20,7 +20,6 @@ void Ui::initTheme() {
     primaryThemeColor.dark = "#3e00b2";
     primaryThemeColor.light = "#af67ff";
     primaryThemeColor.text = "#ffffff";
-
     secondaryThemeColor.normal = "#673ab7";
     secondaryThemeColor.dark = "#320b86";
     secondaryThemeColor.light = "#9a67ea";

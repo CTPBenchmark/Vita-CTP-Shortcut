@@ -30,14 +30,14 @@
 #define ICONS_COLOR_CTP_G 210
 #define ICONS_COLOR_CTP_B 210
 
-#define DEFAULT_SPEED 0.5
+#define DEFAULT_SPEED 5
 
 class Background {
 private:
 	int backgroundColor;
 	int iconsColor;
 	int foregroundColor;
-	float speed;
+	int speed;
 	float position;
 	vita2d_texture* texture;
 	int imgWidth;
@@ -52,7 +52,7 @@ public:
 
 	//Setter
 	void setTexture(vita2d_texture* texture);
-	void setSpeed(float speed);
+	void setSpeed(int speed);
 	void setBackgroundColor(int backgroundColor);
 	void setIconColor(int iconColor);
 	void setForegroundColor(int foregroundColor);

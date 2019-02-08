@@ -9,6 +9,7 @@ private:
     ZoneEvent customizationButtonZE, backButtonZE;
     ZoneEventCheckboxes newsCheckboxZE, forumCheckboxZE;
     UiCheckboxesStatus newsCheckbox, forumCheckbox;
+    std::map<std::string, std::string> i18nSettings;
 public:
     Settings(const std::string &name);
 

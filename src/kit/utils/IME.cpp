@@ -75,7 +75,7 @@ void IME::oslOskGetText(char *text){
 	strcpy(text,(char*)ime_input_text_utf8);
 }
 
-std::string IME::getUserText(const char *title , const char *showtext, unsigned int type, unsigned int option) {
+std::string IME::getUserText(const char *title , const char *showtext, unsigned int type, unsigned int maxTextLength, unsigned int option) {
     bool shown_dial = false;
    
     char userText[512];
@@ -88,7 +88,7 @@ std::string IME::getUserText(const char *title , const char *showtext, unsigned 
         vita2d_clear_screen();
        
         if (!shown_dial) {
-            initImeDialog(title, userText, 128, type, option);
+            initImeDialog(title, userText, maxTextLength, type, option);
             shown_dial = true;
             }
        

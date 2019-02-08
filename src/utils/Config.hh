@@ -22,7 +22,7 @@ class Config {
 private:
     RGBAColor backgroundColor, iconsColor, foregroundColor;
     bool launchNews, launchForum, customisation;
-    float speed;
+    int speed;
     json_t *json;
 
     void createConfig();
@@ -35,7 +35,7 @@ public:
     const RGBAColor &getIconsColor() const;
     const RGBAColor &getForegroundColor() const;
 
-    float getSpeed() const;
+   int  getSpeed() const;
 
     bool isLaunchNews() const;
     bool isLaunchForum() const;
@@ -56,7 +56,7 @@ public:
 
     void setCustomisation(bool customisation);
 
-    void setSpeed(float speed);
+    void setSpeed(int speed);
 
 
 };
