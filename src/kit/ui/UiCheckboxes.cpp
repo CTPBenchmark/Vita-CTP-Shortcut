@@ -1,18 +1,15 @@
 #include "UiCheckboxes.hh"
 
-UiCheckboxes::UiCheckboxes(UiTheme *theme) {
-    this->theme = theme;
-    icons = new UiIcons();
-    this->selectorColor = theme->convertHexToRGBA(theme->getSecondaryHEX().light, 150);
+UiCheckboxes::UiCheckboxes(UiTheme *theme) : UiParentBoxes(theme) {}
+UiCheckboxes::UiCheckboxes(UiTheme *theme, UiIcons *icons) : UiParentBoxes(theme, icons) {}
+UiCheckboxes::UiCheckboxes(UiTheme *theme, UiIcons *icons, UiTexts *texts) : UiParentBoxes(theme, icons, texts) {}
+
+ZoneEventCheckboxes UiCheckboxes::draw(int x, int y, UiCheckboxesStatus status, bool selector, TypeTheme typeTheme, unsigned int size) {
+    return this->drawWithText(x, y, status, "", selector, typeTheme, size);
 }
 
-UiCheckboxes::UiCheckboxes(UiTheme *theme, UiIcons *icons) : theme(theme), icons(icons) {
-    this->theme = theme;
-    this->icons = icons;
-    this->selectorColor = theme->convertHexToRGBA(theme->getSecondaryHEX().light, 150);
-}
-
-ZoneEventCheckboxes UiCheckboxes::draw(int x, int y, UiCheckboxesStatus status, bool selector, unsigned int size) {
+ZoneEventCheckboxes UiCheckboxes::drawWithText(int x, int y, UiCheckboxesStatus status, std::string text, bool selector, TypeTheme typeTheme,
+                                               unsigned int size) {
     zoneEvent.x = x;
     zoneEvent.y = y;
     zoneEvent.width = size * 2;
@@ -20,24 +17,24 @@ ZoneEventCheckboxes UiCheckboxes::draw(int x, int y, UiCheckboxesStatus status, 
     zoneEvent.selector = selector;
     zoneEvent.status = status;
 
+    this->drawSelector(x, y, selector, typeTheme);
 
-    if (selector) {
-        vita2d_draw_fill_circle(x + size, y + size, size, selectorColor);
+    if (status == CHECKBOX_INDERTERMINATE || status == CHECKBOX_CHECKED) {
+        this->drawBoxButton(x, y, ICON_MDI_CHECKBOX_BLANK, (unsigned int) RGBA8(255, 255, 255, 255), size);
     }
 
-    if (status == INDERTERMINATE || status == CHECKED) {
-        icons->draw(ICON_MDI_CHECKBOX_BLANK, x + (size / 2), y + (size / 2), (unsigned int) RGBA8(255, 255, 255, 255), size);
+    if (status == CHECKBOX_UNCHECKED) {
+        this->drawBoxButton(x, y, ICON_MDI_CHECKBOX_BLANK_OUTLINE, BOXES_DEFAULT_COLOR_UNCHECKED, size);
     }
-
-
-    if (status == UNCHECKED) {
-        icons->draw(ICON_MDI_CHECKBOX_BLANK_OUTLINE, x + (size / 2), y + (size / 2), (unsigned int) RGBA8(92, 92, 92, 255), size);
-    }
-    else if (status == INDERTERMINATE) {
-        icons->draw(ICON_MDI_MINUS_BOX, x + (size / 2), y + (size / 2), theme->getSecondaryRGBA().dark, size);
+    else if (status == CHECKBOX_INDERTERMINATE) {
+        this->drawBoxButton(x, y, ICON_MDI_MINUS_BOX, typeTheme, size);
     }
     else {
-        icons->draw(ICON_MDI_CHECKBOX_MARKED, x + (size / 2), y + (size / 2), theme->getSecondaryRGBA().dark, size);
+        this->drawBoxButton(x, y, ICON_MDI_CHECKBOX_MARKED, typeTheme, size);
+    }
+
+    if (!text.empty()) {
+        zoneEvent.width += this->drawText(x, y , size, text).width;
     }
 
 
@@ -47,24 +44,27 @@ ZoneEventCheckboxes UiCheckboxes::draw(int x, int y, UiCheckboxesStatus status, 
 
 UiCheckboxesStatus UiCheckboxes::onPadAuto(ZoneEventCheckboxes zoneEvent, bool button) {
     if (UiEvent::onPad(zoneEvent, button)) {
-        if (zoneEvent.status == UNCHECKED || zoneEvent.status == INDERTERMINATE) {
-            return CHECKED;
+        if (zoneEvent.status == CHECKBOX_UNCHECKED || zoneEvent.status == CHECKBOX_INDERTERMINATE) {
+            return CHECKBOX_CHECKED;
         }
         else {
-            return UNCHECKED;
+            return CHECKBOX_UNCHECKED;
         }
     }
     return zoneEvent.status;
 }
 
-UiCheckboxesStatus UiCheckboxes::onTouchAuto(ZoneEventCheckboxes zoneEvent, vector2 touchInfo) {
+UiCheckboxesStatus UiCheckboxes::onTouchAuto(ZoneEventCheckboxes zoneEvent, SceIVector2 touchInfo) {
     if (UiEvent::onTouch(zoneEvent, touchInfo)) {
-        if (zoneEvent.status == UNCHECKED || zoneEvent.status == INDERTERMINATE) {
-            return CHECKED;
+        if (zoneEvent.status == CHECKBOX_UNCHECKED || zoneEvent.status == CHECKBOX_INDERTERMINATE) {
+            return CHECKBOX_CHECKED;
         }
         else {
-            return UNCHECKED;
+            return CHECKBOX_UNCHECKED;
         }
     }
     return zoneEvent.status;
 }
+
+
+

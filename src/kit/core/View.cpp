@@ -37,4 +37,8 @@ void View::beforeExit() {
 
 }
 
+void View::mounted() {
+
+}
+
 

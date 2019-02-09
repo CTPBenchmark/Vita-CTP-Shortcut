@@ -16,10 +16,8 @@
 #include <psp2/display.h>
 #include <psp2/gxm.h>
 #include <psp2/kernel/sysmem.h>
+#include "UtilsTexts.hh"
 
-
-#define SCE_IME_DIALOG_MAX_TITLE_LENGTH	(128)
-#define SCE_IME_DIALOG_MAX_TEXT_LENGTH	(512)
 
 #define IME_DIALOG_RESULT_NONE 0
 #define IME_DIALOG_RESULT_RUNNING 1
@@ -27,19 +25,18 @@
 #define IME_DIALOG_RESULT_CANCELED 3
 
 
-class IME{
+class UtilsIME{
 private:
 	int i;
 	SceCommonDialogStatus status;
+	UtilsTexts *utilsTexts;
 
 	void oslOskGetText(char *text);
 	void initImeDialog(const char *title, const char *initialText, int maxTextLength, unsigned int type, unsigned int option);
-	void utf16_to_utf8(uint16_t *src, uint8_t *dst);
-	void utf8_to_utf16(uint8_t *src, uint16_t *dst);
 
 	public:
-		IME();
-		std::string getUserText(const char *title, const char *showText = "", unsigned int type = SCE_IME_TYPE_BASIC_LATIN, unsigned int maxTextLength = SCE_IME_DIALOG_MAX_TITLE_LENGTH, unsigned int option = 0);
+		UtilsIME();
+		std::string getUserText(const char *title, const char *showText = "", unsigned int type = SCE_IME_TYPE_BASIC_LATIN, int maxTextLength = 128, unsigned int option = 0);
 		SceCommonDialogStatus getStatus() const;
 };
 

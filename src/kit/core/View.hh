@@ -19,14 +19,17 @@ public:
     virtual void contents();
     virtual void controls();
 
+    //Lifecycle event
     virtual void beforeEnter();
     virtual void beforeExit();
+    virtual void mounted();
 
     std::string getName() const;
 
     void setViewsController(ViewsController *viewsController);
     void setUi(Ui *ui);
     void setUtils(Utils *utils);
+
 
 
 };

@@ -2,25 +2,27 @@
 #define VITAMATERIALKIT_UTILS_HH
 
 
-#include "utils/I18n.hpp"
-#include "utils/Touch.hpp"
-#include "utils/Pad.hpp"
 #include "../utils/Config.hh"
 #include "../utils/WebModal.hh"
-#include "utils/IME.hpp"
+#include "utils/UtilsTouch.hpp"
+#include "utils/UtilsPad.hpp"
+#include "utils/UtilsI18n.hpp"
+#include "utils/UtilsIME.hpp"
+#include "utils/UtilsPadTouchCtrl.hh"
+
 
 class Utils {
 protected:
     virtual void init();
 public:
-    int touchMode = 1;
-    int selector = -1;
-    Touch *touch;
-    Pad *pad;
+    UtilsTouch *touch;
+    UtilsPad *pad;
     Config *config;
-    I18n *i18n;
-    IME *ime;
+    UtilsI18n *i18n;
+    UtilsIME *ime;
     WebModal *webModal;
+    UtilsPadTouchCtrl *ptc;
+
     Utils();
     virtual void read();
 };

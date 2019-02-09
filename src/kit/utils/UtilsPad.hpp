@@ -47,13 +47,13 @@ typedef enum PadAnalogPosition {
 } PadAnalogPosition;
 
 
-class Pad{
+class UtilsPad{
 	
 	public:
-		Pad();
-		~Pad();
+		UtilsPad();
+		~UtilsPad();
 		void read();
-		PadButtons pressed, held, released;
+		PadButtons pressed, held;//, released;
 		PadAnalog right, left;
 	private:
 		int buttonAssign;

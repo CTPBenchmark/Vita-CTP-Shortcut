@@ -70,20 +70,20 @@ ZoneEvent UiButtons::outlinedDraw(std::string text, int x, int y, TypeTheme type
 
     if (strlen(icon) > 0) {
         if (selected) {
-            this->drawOutlinedRectangle(x, y, textData.width + 76, textData.height + 20, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
+            this->drawOutlinedRectangle(x, y, textData.width + 76, textData.height + 20, BUTTONS_OUTLINED_SIZE, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
         }
         else {
-            this->drawOutlinedRectangle(x, y, textData.width + 76, textData.height + 20, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().normal : theme->getSecondaryRGBA().normal);
+            this->drawOutlinedRectangle(x, y, textData.width + 76, textData.height + 20, BUTTONS_OUTLINED_SIZE, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().normal : theme->getSecondaryRGBA().normal);
         }
 
         this->textDrawFinal(text, x, y, typeTheme == THEME_PRIMARY ? THEME_PRIMARY : THEME_SECONDARY, icon);
     }
     else {
         if (selected) {
-            this->drawOutlinedRectangle(x, y, textData.width + 40, textData.height + 20, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
+            this->drawOutlinedRectangle(x, y, textData.width + 40, textData.height + 20, BUTTONS_OUTLINED_SIZE, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
         }
         else {
-            this->drawOutlinedRectangle(x, y, textData.width + 40, textData.height + 20, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().normal : theme->getSecondaryRGBA().normal);
+            this->drawOutlinedRectangle(x, y, textData.width + 40, textData.height + 20, BUTTONS_OUTLINED_SIZE, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().normal : theme->getSecondaryRGBA().normal);
         }
 
         this->textDrawFinal(text, x, y, typeTheme == THEME_PRIMARY ? THEME_PRIMARY : THEME_SECONDARY);
@@ -178,15 +178,13 @@ ZoneEvent UiButtons::floatDraw(const char *icon, int x, int y, TypeTheme typeThe
 
 
 
-void UiButtons::drawOutlinedRectangle(int x, int y, int w, int h, unsigned int color) {
-    x += 1;
-    y += 1;
-    w -= 1;
-    h -= 1;
-    vita2d_draw_line(x, y, x + w, y, color); //top
-    vita2d_draw_line(x + w, y, x + w, y + h, color); //right
-    vita2d_draw_line(x, y + h, x + w, y + h, color); //bottom
-    vita2d_draw_line(x, y, x, y + h, color); //left
+void UiButtons::drawOutlinedRectangle(int x, int y, int w, int h, unsigned int size, unsigned int color) {
+
+    vita2d_draw_rectangle(x, y, w, size, color);//top
+    vita2d_draw_rectangle(x + w - size, y, size, h, color); //right
+    vita2d_draw_rectangle(x, y + h - size, w, size, color); //bottom
+    vita2d_draw_rectangle(x, y, size, h, color); //left
+
 }
 
 

@@ -16,6 +16,7 @@ class App {
 private:
     void checkExit();
     void initVita2d();
+    void launchMountedViews();
 
 protected:
     Utils *utils;

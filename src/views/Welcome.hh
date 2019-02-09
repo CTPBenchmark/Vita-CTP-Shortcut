@@ -3,8 +3,6 @@
 
 #include "../kit/core/View.hh"
 
-#define WELCOME_NUMBER_OF_BUTTONS 4
-
 class Welcome: public View {
 private:
     ZoneEvent forumZE, websiteZE, optionsZE, exitZE;
@@ -16,6 +14,8 @@ public:
     void controls() override;
 
     void beforeEnter() override;
+
+    void mounted() override;
 };
 
 #endif //VITAMATERIALKIT_WELCOME_HH

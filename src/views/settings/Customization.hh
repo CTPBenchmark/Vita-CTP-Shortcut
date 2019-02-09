@@ -10,7 +10,6 @@ private:
     ZoneEvent redZE, greenZE, blueZE, alphaZE;
     ZoneEventCheckboxes customizationCheckboxZE;
     UiCheckboxesStatus customizationCheckbox;
-    int CUSTOMIZATION_NUMBER_OF_BUTTONS;
     std::map<std::string, std::string> i18nCustomization;
     std::string chosen;
     RGBAColor rgbaCustomization;
@@ -32,6 +31,8 @@ public:
 
     void beforeEnter() override;
     void beforeExit() override;
+
+    void mounted() override;
 };
 
 

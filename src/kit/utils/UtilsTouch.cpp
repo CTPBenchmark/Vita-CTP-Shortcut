@@ -1,6 +1,6 @@
-#include "Touch.hpp"
+#include "UtilsTouch.hpp"
 
-Touch::Touch(){
+UtilsTouch::UtilsTouch(){
 	emptyClickPoint.x = emptyClickPoint.y = 0;
 
 	sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
@@ -10,7 +10,7 @@ Touch::Touch(){
 }
 
 
-void Touch::read(){
+void UtilsTouch::read(){
 	memcpy(touch_old, touch, sizeof(touch_old));
 
 	for(port = 0; port < SCE_TOUCH_PORT_MAX_NUM; port++) {
@@ -62,6 +62,6 @@ void Touch::read(){
 	}
 }
 
-vector2 Touch::getClickPoint() {
+SceIVector2 UtilsTouch::getClickPoint() {
 	return lastClickPoint;
 }

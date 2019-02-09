@@ -9,15 +9,15 @@
 #include <psp2/apputil.h>
 #include <psp2/system_param.h>
 
-class I18n {
+class UtilsI18n {
     private:
         json_t *i18nFile;
         int currentLang, defaultLang;
 
         const char* getLanguageCode(int lang);
     public:
-        I18n();
-        I18n(int lang);
+        UtilsI18n();
+        UtilsI18n(int lang);
         std::map<std::string, std::string> getI18nByCat(std::string cat);
 
         void setCurrentLanguage(int lang);

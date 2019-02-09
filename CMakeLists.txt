@@ -83,13 +83,16 @@ add_executable(${SHORT_NAME}
         src/kit/ui/UiIcons.cpp
         src/kit/ui/UiButtons.cpp
         src/kit/ui/UiTexts.cpp
+        src/kit/ui/parent/UiParentBoxes.cpp
         src/kit/ui/UiCheckboxes.cpp
         src/kit/ui/UiTextFields.cpp
 
-        src/kit/utils/I18n.cpp
-        src/kit/utils/IME.cpp
-        src/kit/utils/Pad.cpp
-        src/kit/utils/Touch.cpp
+        src/kit/utils/UtilsTexts.cpp
+        src/kit/utils/UtilsI18n.cpp
+        src/kit/utils/UtilsIME.cpp
+        src/kit/utils/UtilsPad.cpp
+        src/kit/utils/UtilsTouch.cpp
+        src/kit/utils/UtilsPadTouchCtrl.cpp
 
         src/ui/Background.cpp
         src/ui/LayoutTheme.cpp

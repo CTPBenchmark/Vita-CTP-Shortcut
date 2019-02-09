@@ -19,6 +19,8 @@ public:
 
     void beforeEnter() override;
 
+    void mounted() override;
+
 };
 
 

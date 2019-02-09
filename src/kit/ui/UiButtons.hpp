@@ -1,13 +1,15 @@
 #ifndef VITA_MATERIAL_KIT_UI_BUTTON_HPP
 #define VITA_MATERIAL_KIT_UI_BUTTON_HPP
 
-#include "../utils/Touch.hpp"
-#include "../utils/Pad.hpp"
+#include "../utils/UtilsTouch.hpp"
+#include "../utils/UtilsPad.hpp"
 
 #include "UiTexts.hpp"
 #include "UiIcons.hpp"
 #include "UiTheme.hpp"
 #include "../core/UiEvent.hh"
+
+#define BUTTONS_OUTLINED_SIZE 3
 
 class UiButtons : public UiEvent {
 private:
@@ -18,7 +20,7 @@ private:
     ZoneEvent zoneEvent;
     TextStyle textStyle = Button;
 
-    void drawOutlinedRectangle(int x, int y, int w, int h, unsigned int color);
+    void drawOutlinedRectangle(int x, int y, int w, int h, unsigned int size, unsigned int color);
     void textDrawFinal(std::string text, int x, int y, TypeTheme typeTheme = THEME_PRIMARY, const char* icon = "");
 public:
     UiButtons(UiTheme *theme);

@@ -12,29 +12,25 @@
 #define MIN_DIST_TO_SCROLL_Y 2
 #define MIN_DIST_TO_SCROLL_X 2
 
-typedef struct{
-	int x;
-	int y;
-}vector2;
 
-class Touch{
+class UtilsTouch{
 	private:
 		int port;
-		vector2 emptyClickPoint;
+		SceIVector2 emptyClickPoint;
 
 	public:
-		Touch();
+		UtilsTouch();
 
 		SceTouchData touch_old[SCE_TOUCH_PORT_MAX_NUM];
 		SceTouchData touch[SCE_TOUCH_PORT_MAX_NUM];
-		vector2 lastClickPoint;
-		vector2 lastTouchPoint;
+		SceIVector2 lastClickPoint;
+		SceIVector2 lastTouchPoint;
 		bool clicking;
 		bool scrolling;
 		int scrollDirX ;
 		int scrollDirY;
 
-		vector2 getClickPoint();
+		SceIVector2 getClickPoint();
 		void read();
 
 		

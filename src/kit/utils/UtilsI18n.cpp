@@ -1,8 +1,8 @@
 
 #include <string.h>
-#include "I18n.hpp"
+#include "UtilsI18n.hpp"
 
-I18n::I18n() {
+UtilsI18n::UtilsI18n() {
     SceAppUtilInitParam initParam;
     SceAppUtilBootParam bootParam;
     memset(&initParam, 0, sizeof(SceAppUtilInitParam));
@@ -13,11 +13,11 @@ I18n::I18n() {
     this->setCurrentLanguage(defaultLang);
 }
 
-I18n::I18n(int lang) {
+UtilsI18n::UtilsI18n(int lang) {
     this->setCurrentLanguage(lang);
 }
 
-void I18n::setCurrentLanguage(int lang) {
+void UtilsI18n::setCurrentLanguage(int lang) {
     json_error_t error;
     char languageCode[25];
 
@@ -27,7 +27,7 @@ void I18n::setCurrentLanguage(int lang) {
     i18nFile = json_load_file(languageCode, 0, &error);
 }
 
-std::map<std::string, std::string> I18n::getI18nByCat(std::string cat) {
+std::map<std::string, std::string> UtilsI18n::getI18nByCat(std::string cat) {
     std::map<std::string, std::string> result;
 
     json_t *obj = json_object_get(i18nFile, cat.c_str());
@@ -41,16 +41,16 @@ std::map<std::string, std::string> I18n::getI18nByCat(std::string cat) {
     return result;
 }
 
-int I18n::getCurrentLanguage() {
+int UtilsI18n::getCurrentLanguage() {
     return currentLang;
 }
 
-int I18n::getDefaultLanguage() {
+int UtilsI18n::getDefaultLanguage() {
     return defaultLang;
 }
 
 
-const char *I18n::getLanguageCode(int lang) {
+const char *UtilsI18n::getLanguageCode(int lang) {
     switch(lang) {
         case SCE_SYSTEM_PARAM_LANG_JAPANESE:
             return "jap";
