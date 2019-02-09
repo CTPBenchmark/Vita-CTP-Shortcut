@@ -35,7 +35,10 @@ public:
 
     void controller();
     void setLimit(PadTouchCtrlType type, int limit);
+    void setLimit(PadTouchCtrlType type, int limit, int start);
+
     void setLimit(int xLimit, int yLimit);
+    void setLimit(int xLimit, int yLimit, int xStart, int yStart);
 
     void addLimit(PadTouchCtrlType type, int line, int first, int last);
 

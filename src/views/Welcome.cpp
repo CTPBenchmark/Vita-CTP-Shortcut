@@ -44,5 +44,5 @@ void Welcome::mounted() {
 }
 
 void Welcome::beforeEnter() {
-    this->utils->ptc->setLimit(PADTOUCHCTRL_TYPE_Y, 4);
+    this->utils->ptc->setLimit(PADTOUCHCTRL_TYPE_Y, 4, 2);
 }

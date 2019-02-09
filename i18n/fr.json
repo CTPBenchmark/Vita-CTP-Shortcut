@@ -6,7 +6,7 @@
     "exit" : "Quitter"
   },
   "settings" : {
-    "customization" : "Customisation du fond",
+    "customization" : "Personnalisation du fond",
     "autoLaunchInstruction" : "Au lancement, ouvrir automatiquement :",
     "theNews" : "les actualités",
     "theForum" : "le forum",
