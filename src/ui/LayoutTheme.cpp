@@ -77,7 +77,7 @@ int LayoutTheme::getForegroundColor() {
     return FOREGROUND_COLOR_CTP;
 }
 
-float LayoutTheme::getSpeed() {
+int LayoutTheme::getSpeed() {
     if (config->isCustomisation())
         return config->getSpeed();
 
@@ -88,7 +88,7 @@ void LayoutTheme::display(bool displayLogo) {
     background->display();
 
     if (displayLogo) {
-        vita2d_draw_texture(logo, 480 - (LOGO_WIDTH / 2), 10);
+        vita2d_draw_texture(logo, 10, 10);
     }
 }
 

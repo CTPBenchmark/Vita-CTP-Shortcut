@@ -2,6 +2,7 @@
 #define CTP_SHORTCUT_LAYOUTTHEME_HH
 
 #define LOGO_WIDTH 370
+#define LOGO_HEIGHT 117
 
 #include <vita2d.h>
 #include "../utils/Config.hh"
@@ -19,7 +20,7 @@ private:
     int getIconColor();
     int getBackgroundColor();
     int getForegroundColor();
-    float getSpeed();
+    int getSpeed();
 public:
     LayoutTheme(Config *config);
     void display(bool displayLogo);

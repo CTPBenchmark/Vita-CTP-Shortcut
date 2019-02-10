@@ -2,6 +2,7 @@
 #define VITAMATERIALKIT_UI_HH
 
 
+#include <kit/ui/UiCards.hh>
 #include "ui/UiTheme.hpp"
 #include "ui/UiIcons.hpp"
 #include "ui/UiTexts.hpp"
@@ -24,6 +25,7 @@ public:
     UiIcons     *icons;
     UiCheckboxes *checkboxes;
     UiTextFields *textFields;
+    UiCards *cards;
 
     LayoutTheme *layoutTheme;
 

@@ -2,6 +2,8 @@
 #define VITAMATERIALKIT_UTILS_HH
 
 
+#include <utils/CTPApi.hh>
+#include <kit/utils/UtilsScroll.hh>
 #include "../utils/Config.hh"
 #include "../utils/WebModal.hh"
 #include "utils/UtilsTouch.hpp"
@@ -22,6 +24,7 @@ public:
     UtilsIME *ime;
     WebModal *webModal;
     UtilsPadTouchCtrl *ptc;
+    UtilsScroll *scroll;
 
     Utils();
     virtual void read();

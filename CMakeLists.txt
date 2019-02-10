@@ -9,6 +9,7 @@ if( NOT DEFINED CMAKE_TOOLCHAIN_FILE )
   endif()
 endif()
 
+
 # Project start
 set(SHORT_NAME CTP_Shortcut)
 project(${SHORT_NAME})
@@ -17,20 +18,44 @@ set(VITA_APP_NAME "Custom Protocol")
 set(VITA_TITLEID  "VCTP12345")
 set(VITA_VERSION  "02.00")
 
+
 set(PSVITAIP  "192.168.1.37")
 
 #Vita3K PATHS
 set(VITA3K_APP_PATH "/Applications/Vita3K.app/Contents/MacOS/Vita3K")
 set(VITA3K_FOLDER_PATH "/Users/Applelo/Library/Application\ Support/Vita3K/Vita3K/ux0/app/${VITA_TITLEID}")
 
+set(ENV{PKG_CONFIG_PATH} "$ENV{VITASDK}/arm-vita-eabi/lib/pkgconfig")
+include(FindPkgConfig)
+
+find_package(Git)
+if(NOT Git_FOUND)
+    message(WARNING "Git not found, using unknown as tag...")
+    add_definitions(-DGIT_COMMIT="unknown")
+else()
+    execute_process(
+            COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+            OUTPUT_VARIABLE DGIT_COMMIT
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+            ERROR_QUIET
+    )
+
+    add_definitions(-DGIT_COMMIT="${DGIT_COMMIT}")
+endif()
 
 # Flags and includes
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O3 -Wno-unused-variable -Wno-unused-but-set-variable -fno-lto")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-rtti -fno-exceptions")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -fpermissive -std=gnu11 -Wall ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fpermissive -std=c++11 -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 set(VITA_MAKE_FSELF_FLAGS "${VITA_MAKE_FSELF_FLAGS} -a 0x2800000000000001")
 
+find_package(CURL REQUIRED)
+find_package(OpenSSL REQUIRED)
+pkg_check_modules(CURLPP REQUIRED curlpp)
+
 include_directories(
+        src/
 )
 
 link_directories(
@@ -86,6 +111,7 @@ add_executable(${SHORT_NAME}
         src/kit/ui/parent/UiParentBoxes.cpp
         src/kit/ui/UiCheckboxes.cpp
         src/kit/ui/UiTextFields.cpp
+        src/kit/ui/UiCards.cpp
 
         src/kit/utils/UtilsTexts.cpp
         src/kit/utils/UtilsI18n.cpp
@@ -93,6 +119,7 @@ add_executable(${SHORT_NAME}
         src/kit/utils/UtilsPad.cpp
         src/kit/utils/UtilsTouch.cpp
         src/kit/utils/UtilsPadTouchCtrl.cpp
+        src/kit/utils/UtilsScroll.cpp
 
         src/ui/Background.cpp
         src/ui/LayoutTheme.cpp
@@ -101,6 +128,8 @@ add_executable(${SHORT_NAME}
         src/utils/Config.cpp
         src/utils/WebModal.cpp
         src/utils/CTPApi.cpp
+        src/utils/Singleton.cpp
+        src/utils/CTPApiThread.cpp
 
         src/views/Welcome.cpp
         src/views/settings/Settings.cpp
@@ -113,13 +142,13 @@ target_link_libraries(${SHORT_NAME}
         vita2d
         SceDisplay_stub
         SceGxm_stub
-        SceSysmodule_stub
         SceCtrl_stub
         SceTouch_stub
         SceCommonDialog_stub
         SceAppUtil_stub
         SceAppMgr_stub
         SceRegistryMgr_stub
+        SceSysmodule_stub
         jansson
         freetype
         png
@@ -127,6 +156,13 @@ target_link_libraries(${SHORT_NAME}
         z
         m
         c
+        SceNet_stub
+        SceNetCtl_stub
+        SceHttp_stub
+        SceSsl_stub
+        ${CURLPP_LDFLAGS}
+        ${CURL_LIBRARIES}
+        ${OPENSSL_LIBRARIES}
         )
 
 # Create Vita artifacts
