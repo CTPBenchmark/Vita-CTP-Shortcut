@@ -9,7 +9,7 @@ ZoneEventCheckboxes UiCheckboxes::draw(int x, int y, UiCheckboxesStatus status, 
 }
 
 ZoneEventCheckboxes UiCheckboxes::drawWithText(int x, int y, UiCheckboxesStatus status, std::string text, bool selector, TypeTheme typeTheme,
-                                               unsigned int size) {
+                                               unsigned int size, unsigned int textColor, TextStyle textStyle) {
     zoneEvent.x = x;
     zoneEvent.y = y;
     zoneEvent.width = size * 2;
@@ -20,7 +20,7 @@ ZoneEventCheckboxes UiCheckboxes::drawWithText(int x, int y, UiCheckboxesStatus 
     this->drawSelector(x, y, selector, typeTheme);
 
     if (status == CHECKBOX_INDERTERMINATE || status == CHECKBOX_CHECKED) {
-        this->drawBoxButton(x, y, ICON_MDI_CHECKBOX_BLANK, (unsigned int) RGBA8(255, 255, 255, 255), size);
+        this->drawBoxButton(x + 2, y + 2, ICON_MDI_CHECKBOX_BLANK, (unsigned int) RGBA8(255, 255, 255, 255), size - 2);
     }
 
     if (status == CHECKBOX_UNCHECKED) {
@@ -34,7 +34,7 @@ ZoneEventCheckboxes UiCheckboxes::drawWithText(int x, int y, UiCheckboxesStatus 
     }
 
     if (!text.empty()) {
-        zoneEvent.width += this->drawText(x, y , size, text).width;
+        zoneEvent.width += this->drawText(x, y , size, text, textStyle, textColor).width;
     }
 
 

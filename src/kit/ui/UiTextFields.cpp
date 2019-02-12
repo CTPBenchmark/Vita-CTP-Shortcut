@@ -131,8 +131,8 @@ ZoneEventTextField UiTextFields::filledDraw(
             showedText = text.substr(textDataText.width / (mainTextStyleData.size - 10), text.size());
         }
         else if (textFieldMode == TEXTFIELD_MODE_TEXTAREA && textDataText.width > (width - TEXTFIELD_PADDING - prefixIconPos - suffixIconPos)) {
-            showedText = this->applyTextWidthLimit(text, width);
-            showedText = this->applyTextHeightLimit(showedText, height);
+            showedText = texts->applyTextWidthLimit(text, width - TEXTFIELD_PADDING - prefixIconPos - suffixIconPos, mainTextStyleData);
+            showedText = texts->applyTextHeightLimit(showedText, height - 32, mainTextStyleData);
         }
         else {
             showedText = text;
@@ -749,67 +749,4 @@ ZoneEventTextField UiTextFields::filledDrawPrefixTextAndTrailingIcon(int x, int 
 }
 //#endregion
 
-
-//#region utils
-
-int UiTextFields::keySearch(const std::string& s, const std::string& key) {
-    int count = 0;
-    size_t pos=0;
-    while ((pos = s.find(key, pos)) != std::string::npos) {
-        ++count;
-        ++pos;
-    }
-    return count;
-}
-
-std::string UiTextFields::applyTextWidthLimit(std::string text, int width) {
-    textDataText = texts->getTextData(text, mainTextStyleData);
-
-    if (textDataText.width > (width - TEXTFIELD_PADDING - prefixIconPos - suffixIconPos)) {
-
-        posBreak = (unsigned int) (this->keySearch(text, "\n") + 1);
-        posBreak = posBreak * (width - TEXTFIELD_PADDING - prefixIconPos - suffixIconPos);
-        posBreak = posBreak / (mainTextStyleData.size / 2);
-
-        std::string::size_type lastFound = text.find_last_of('\n');
-        std::string::size_type found = text.find(' ', posBreak);
-
-        if (lastFound == std::string::npos) {
-            lastFound = 0;
-        }
-
-        if (found == std::string::npos) {
-            found = text.length() - 1;
-        }
-
-        if ((found - lastFound) > 28) {
-            text.insert(posBreak, "-\n");
-        }
-        else {
-            text.replace(found, 1, "\n");
-        }
-
-        return this->applyTextWidthLimit(text, width);
-    }
-
-    return text;
-}
-
-std::string UiTextFields::applyTextHeightLimit(std::string text, int height) {
-    textDataText = texts->getTextData(text, mainTextStyleData);
-
-    if (textDataText.height > (height - 32)) {
-        std::string::size_type found = text.find_first_of('\n');
-
-        if (found != std::string::npos) {
-            text = text.substr(found + 1, text.length() - 1);
-            return this->applyTextHeightLimit(text, height);
-        }
-    }
-
-    return text;
-}
-
-
-//#endregion
 

@@ -6,7 +6,7 @@
 #include <vita2d.h>
 #include <string>
 
-#include "UiIconsCodes.h"
+#include "UiIconsCodes.hh"
 #include "UiTheme.hpp"
 #include <math.h>
 

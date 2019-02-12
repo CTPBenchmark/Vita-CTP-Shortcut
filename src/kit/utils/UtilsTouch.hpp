@@ -21,7 +21,7 @@ class UtilsTouch{
 	public:
 		UtilsTouch();
 
-		SceTouchData touch_old[SCE_TOUCH_PORT_MAX_NUM];
+		SceTouchData touchOld[SCE_TOUCH_PORT_MAX_NUM];
 		SceTouchData touch[SCE_TOUCH_PORT_MAX_NUM];
 		SceIVector2 lastClickPoint;
 		SceIVector2 lastTouchPoint;

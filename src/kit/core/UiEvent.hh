@@ -13,8 +13,8 @@ typedef struct ZoneEvent {
 
 class UiEvent {
 public:
-    static bool onPad(ZoneEvent zoneEvent, bool button);
-    static bool onTouch(ZoneEvent zoneEvent, SceIVector2 touchInfo);
+    bool onPad(ZoneEvent zoneEvent, bool button);
+    bool onTouch(ZoneEvent zoneEvent, SceIVector2 touchInfo);
 };
 
 

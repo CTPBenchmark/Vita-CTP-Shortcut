@@ -10,12 +10,12 @@ void Welcome::contents() {
     forumZE = ui->buttons->containedDraw(i18nWelcome["forum"], websiteZE.x + websiteZE.width + 20, 10 + (LOGO_HEIGHT / 2) - (forumZE.height / 2), THEME_PRIMARY, false, ICON_MDI_FORUM);
     optionsZE = ui->buttons->floatDraw(ICON_MDI_SETTINGS, 960 - (optionsZE.width) - 10, 10 + (LOGO_HEIGHT / 2) - (optionsZE.height / 2), THEME_PRIMARY, false);
 
-    if (CTPApi::getInstance()->getStatus() == CTPAPI_STATUS_LOADED ) {
+    if (!cardPosts.empty()) {
         int i = 0;
-        for (auto &post : CTPApi::getInstance()->getPosts()) {
+        for (auto &post : cardPosts) {
             ui->cards->initCard(10 + (10 * i) + (i * 400) - utils->scroll->getScroll("cards"), LOGO_HEIGHT + 20);
-            ui->cards->drawPrimaryTitle(post.title, post.author);
-            ui->cards->drawSummary(post.excerpt);
+            ui->cards->drawPrimaryTitle(post.cardPrePrimaryTitle);
+            ui->cards->drawSummary(post.cardPreSummary);
             i++;
         }
     }
@@ -39,19 +39,19 @@ void Welcome::controls() {
     utils->scroll->controller("cards", utils->pad->pressed.left && utils->ptc->isY(2), utils->pad->pressed.right && utils->ptc->isY(2), 400);
 
 //events
-    if (UiButtons::onTouch(optionsZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(optionsZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(optionsZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(optionsZE, utils->pad->pressed.cross)) {
         viewsController->setActualView("Settings");
     }
 
-    if (UiButtons::onTouch(websiteZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(websiteZE, utils->pad->pressed.cross)
+    if (ui->buttons->onTouch(websiteZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(websiteZE, utils->pad->pressed.cross)
             ) {
         utils->webModal->launchCTPNews();
     }
 
-    if (UiButtons::onTouch(forumZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(forumZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(forumZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(forumZE, utils->pad->pressed.cross)) {
         utils->webModal->launchCTPForum();
     }
 
@@ -59,8 +59,8 @@ void Welcome::controls() {
         CTPApi::getInstance()->getStatus() == CTPAPI_STATUS_ERROR) {
         this->utils->ptc->setLimit(PADTOUCHCTRL_TYPE_Y, 3, 2);
 
-        if (UiButtons::onTouch(centerZE, utils->touch->lastClickPoint) ||
-            UiButtons::onPad(centerZE, utils->pad->pressed.cross)) {
+        if (ui->buttons->onTouch(centerZE, utils->touch->lastClickPoint) ||
+            ui->buttons->onPad(centerZE, utils->pad->pressed.cross)) {
             getPostsByApiStartThread();
         }
     }
@@ -68,11 +68,25 @@ void Welcome::controls() {
         this->utils->ptc->setLimit(PADTOUCHCTRL_TYPE_Y, 3, 2);
     }
 
-
-
-    if (UiButtons::onTouch(exitZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(exitZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(exitZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(exitZE, utils->pad->pressed.cross)) {
         viewsController->setActualView(VIEWS_CONTROLLER_EXIT);
+    }
+
+    //transform api data to card data
+    if (CTPApi::getInstance()->getStatus() == CTPAPI_STATUS_LOADED && cardPosts.empty()) {
+        CardPreSummary cardPreSummary;
+        CardPrePrimaryTitle cardPrePrimaryTitle;
+        CardPostContent cardPostContent;
+        for (auto &post : CTPApi::getInstance()->getPosts()) {
+            cardPrePrimaryTitle = ui->cards->prePrimaryTitle(post.title, post.author, 200);
+            cardPreSummary = ui->cards->preSummaryTitle(post.excerpt, 100);
+
+            cardPostContent.cardPrePrimaryTitle = cardPrePrimaryTitle;
+            cardPostContent.cardPreSummary = cardPreSummary;
+
+            cardPosts.emplace(cardPosts.end(), cardPostContent);
+        }
     }
 
 }

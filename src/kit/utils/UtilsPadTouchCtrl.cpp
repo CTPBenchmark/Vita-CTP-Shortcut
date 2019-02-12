@@ -45,10 +45,10 @@ void UtilsPadTouchCtrl::controller() {
     if (ctrlMode) {
         //add support for analog stick
         if (pad->pressed.down) {
-            yItem++;
+           yItem++;
         }
         if (pad->pressed.up) {
-            yItem--;
+           yItem--;
         }
         if (pad->pressed.right) {
             xItem++;
@@ -101,6 +101,26 @@ void UtilsPadTouchCtrl::controller() {
 
 void UtilsPadTouchCtrl::setLimit(PadTouchCtrlType type, int limit) {
     this->clearLimits();
+    this->updateLimit(type, limit);
+}
+
+void UtilsPadTouchCtrl::setLimit(PadTouchCtrlType type, int limit, int start) {
+    this->setLimit(type, limit);
+    this->updateStart(type, start);
+}
+
+void UtilsPadTouchCtrl::setLimit(int xLimit, int yLimit) {
+    this->clearLimits();
+    this->updateLimit(xLimit, yLimit);
+}
+
+void UtilsPadTouchCtrl::setLimit(int xLimit, int yLimit, int xStart, int yStart) {
+    this->setLimit(xLimit, yLimit);
+    this->updateStart(xStart, yStart);
+}
+
+
+void UtilsPadTouchCtrl::updateLimit(PadTouchCtrlType type, int limit) {
     if (type == PADTOUCHCTRL_TYPE_X) {
         xLimit = limit;
     }
@@ -109,9 +129,7 @@ void UtilsPadTouchCtrl::setLimit(PadTouchCtrlType type, int limit) {
     }
 }
 
-
-void UtilsPadTouchCtrl::setLimit(PadTouchCtrlType type, int limit, int start) {
-    this->setLimit(type, limit);
+void UtilsPadTouchCtrl::updateStart(PadTouchCtrlType type, int start) {
     if (type == PADTOUCHCTRL_TYPE_X) {
         xOldItem = start;
         if (ctrlMode) {
@@ -126,14 +144,12 @@ void UtilsPadTouchCtrl::setLimit(PadTouchCtrlType type, int limit, int start) {
     }
 }
 
-void UtilsPadTouchCtrl::setLimit(int xLimit, int yLimit) {
-    this->clearLimits();
+void UtilsPadTouchCtrl::updateLimit(int xLimit, int yLimit) {
     this->xOldItem = xLimit;
     this->yOldItem = yLimit;
 }
 
-void UtilsPadTouchCtrl::setLimit(int xLimit, int yLimit, int xStart, int yStart) {
-    this->setLimit(xLimit, yLimit);
+void UtilsPadTouchCtrl::updateStart(int xStart, int yStart) {
     xItem = xStart;
     yItem = yStart;
     if (ctrlMode) {
@@ -203,5 +219,6 @@ void UtilsPadTouchCtrl::clearLimits() {
     xLimits.clear();
     yLimits.clear();
 }
+
 
 

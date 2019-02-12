@@ -56,9 +56,6 @@ private:
     unsigned int posBreak;
 
     void init();
-    int keySearch(const std::string& s, const std::string& key);
-    std::string applyTextWidthLimit(std::string text, int width);
-    std::string applyTextHeightLimit(std::string text, int height);
 public:
     UiTextFields(UiTheme *theme);
     UiTextFields(UiTheme *theme, UiTexts *texts);
@@ -123,8 +120,6 @@ public:
     ZoneEventTextField filledDrawPrefixTextAndTrailingIcon(int x, int y, TextFieldMode textFieldMode, bool selector, std::string label, std::string prefixText, std::string text, const char *trailingIcon, std::string helper = "", std::string error = "", unsigned int charCounter = 0, TypeTheme typeTheme = THEME_PRIMARY);
     ZoneEventTextField filledDrawPrefixTextAndTrailingIcon(int x, int y, TextFieldMode textFieldMode, int width, bool selector, std::string label, std::string prefixText, std::string text, const char *trailingIcon, std::string helper = "", std::string error = "", unsigned int charCounter = 0, TypeTheme typeTheme = THEME_PRIMARY);
     ZoneEventTextField filledDrawPrefixTextAndTrailingIcon(int x, int y, TextFieldMode textFieldMode, int width, int height, bool selector, std::string label, std::string prefixText, std::string text, const char *trailingIcon, std::string helper = "", std::string error = "", unsigned int charCounter = 0, TypeTheme typeTheme = THEME_PRIMARY);
-
-
 
 
 };

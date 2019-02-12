@@ -60,12 +60,10 @@ void CTPApi::initNet() {
 }
 
 void CTPApi::terminateNet() {
-    curl_global_cleanup();
     sceHttpTerm();
     sceSysmoduleUnloadModule(SCE_SYSMODULE_HTTP);
     sceNetCtlTerm();
     sceNetTerm();
-    cURLpp::terminate();
 }
 
 std::vector<CTPApiPost> CTPApi::getPosts() {
@@ -144,7 +142,7 @@ void CTPApi::readPostsFile() {
                 ctpApiPost.author = json_string_value(json_object_get(valueArray, "author"));
 
 
-                posts.emplace(posts.begin(), ctpApiPost);
+                posts.emplace(posts.end(), ctpApiPost);
             }
             status = CTPAPI_STATUS_LOADED;
         }

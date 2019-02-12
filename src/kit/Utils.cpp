@@ -4,6 +4,7 @@
 Utils::Utils() {
     this->init();
     this->webModal->launchAutoWebModal();//auto launch
+    //see if a event exist
     if (!this->config->isLaunchForum() && !this->config->isLaunchNews()) {
         getPostsByApiStartThread();
     }

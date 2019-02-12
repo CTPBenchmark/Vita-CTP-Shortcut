@@ -157,16 +157,16 @@ ZoneEvent UiButtons::floatDraw(const char *icon, int x, int y, TypeTheme typeThe
     }
     else {
         if (selected) {
-            vita2d_draw_fill_circle(x + 25, y + 25, 25, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
+            vita2d_draw_fill_circle(x + 35, y + 25, 35, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
         }
         else {
-            vita2d_draw_fill_circle(x + 25, y + 25, 25, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().normal : theme->getSecondaryRGBA().normal);
+            vita2d_draw_fill_circle(x + 35, y + 35, 35, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().normal : theme->getSecondaryRGBA().normal);
         }
 
-        icons->draw(icon, x + 10, y + 8, typeTheme == THEME_PRIMARY ? THEME_PRIMARY : THEME_SECONDARY, 30);
+        icons->draw(icon, x + 16, y + 14, typeTheme == THEME_PRIMARY ? THEME_PRIMARY : THEME_SECONDARY, 40);
 
-        zoneEvent.width = 50;
-        zoneEvent.height = 50;
+        zoneEvent.width = 70;
+        zoneEvent.height = 70;
     }
 
     zoneEvent.x = x;

@@ -9,10 +9,12 @@
 class ViewsController {
 private:
     std::string actualView;
+    std::string previousView;
 public:
     ViewsController(std::string actualView);
 
     std::string getActualView();
+    std::string getPreviousView();
     void setActualView(std::string actualView);
 };
 

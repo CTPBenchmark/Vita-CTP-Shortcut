@@ -22,7 +22,7 @@ protected:
 
     void drawSelector(int x, int y, bool selector, TypeTheme theme, unsigned int size = BOXES_DEFAULT_SIZE);
 
-    TextData drawText(int x, int y, int size, std::string text);
+    TextData drawText(int x, int y, int size, std::string text, TextStyle textStyle = Body1, unsigned int color = TEXTS_DEFAULT_FONT_COLOR);
 
     void drawBoxButton(int x, int y, const char* icon, TypeTheme theme, unsigned int size = BOXES_DEFAULT_SIZE);
     void drawBoxButton(int x, int y, const char* icon, unsigned int color, unsigned int size = BOXES_DEFAULT_SIZE);

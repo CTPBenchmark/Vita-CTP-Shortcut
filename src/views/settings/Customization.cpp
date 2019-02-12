@@ -27,7 +27,7 @@ void Customization::contentsDefault() {
 
     vita2d_draw_rectangle(10, 10, 960 - 20, 90, ui->theme->convertHexToRGBA(ui->theme->getPrimaryHEX().dark, 200));
 
-    customizationCheckboxZE = ui->checkboxes->drawWithText(20, 15, customizationCheckbox, i18nCustomization["customizationInstruction"], utils->ptc->isY(PADTOUCHCTRL_IS_FIRST));
+    customizationCheckboxZE = ui->checkboxes->drawWithText(20, 15, customizationCheckbox, i18nCustomization["customizationInstruction"], utils->ptc->isY(PADTOUCHCTRL_IS_FIRST), THEME_PRIMARY, 40, RGBA8(255, 255, 255, 255));
 
     if (utils->config->isCustomisation()) {
 
@@ -58,30 +58,30 @@ void Customization::controlsDefault() {
     }
 
 
-    if (UiButtons::onTouch(backgroundButtonZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(backgroundButtonZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(backgroundButtonZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(backgroundButtonZE, utils->pad->pressed.cross)) {
         chosen = "background";
         rgbaCustomization = utils->config->getBackgroundColor();
         this->utils->ptc->setLimit(PADTOUCHCTRL_TYPE_Y,  5);
     }
 
-    if (UiButtons::onTouch(iconsButtonZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(iconsButtonZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(iconsButtonZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(iconsButtonZE, utils->pad->pressed.cross)) {
         chosen = "icons";
         rgbaCustomization = utils->config->getIconsColor();
         this->utils->ptc->setLimit(PADTOUCHCTRL_TYPE_Y,  5);
     }
 
-    if (UiButtons::onTouch(foregroundButtonZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(foregroundButtonZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(foregroundButtonZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(foregroundButtonZE, utils->pad->pressed.cross)) {
         chosen = "foreground";
         rgbaCustomization = utils->config->getForegroundColor();
         this->utils->ptc->setLimit(PADTOUCHCTRL_TYPE_Y,  5);
     }
 
 
-    if (UiTextFields::onTouch(speedTextFieldZE, utils->touch->lastClickPoint) ||
-        UiTextFields::onPad(speedTextFieldZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(speedTextFieldZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(speedTextFieldZE, utils->pad->pressed.cross)) {
         int speed = utils->config->getSpeed();
         speed = std::stoi(utils->ime->getUserText(i18nCustomization["speed"].c_str(), std::to_string(speed).c_str(), SCE_IME_TYPE_NUMBER, 2));
         if (speed > 99) {
@@ -95,9 +95,9 @@ void Customization::controlsDefault() {
     }
 
 
-    if (UiButtons::onTouch(backButtonZE, utils->touch->lastClickPoint) ||
+    if (ui->buttons->onTouch(backButtonZE, utils->touch->lastClickPoint) ||
         utils->pad->pressed.circle ||
-        UiButtons::onPad(backButtonZE, utils->pad->pressed.cross)) {
+        ui->buttons->onPad(backButtonZE, utils->pad->pressed.cross)) {
         utils->config->saveConfig();
         viewsController->setActualView("Settings");
     }
@@ -121,38 +121,38 @@ void Customization::contentsCustomizeColors() {
 void Customization::controlsCustomizeColors() {
 
 
-    if (UiButtons::onTouch(redZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(redZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(redZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(redZE, utils->pad->pressed.cross)) {
 
         rgbaCustomization.r = getColorPart("red", rgbaCustomization.r);
         this->refreshBackground();
     }
 
-    if (UiButtons::onTouch(greenZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(greenZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(greenZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(greenZE, utils->pad->pressed.cross)) {
 
         rgbaCustomization.g = getColorPart("green", rgbaCustomization.g);
         this->refreshBackground();
     }
 
-    if (UiButtons::onTouch(blueZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(blueZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(blueZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(blueZE, utils->pad->pressed.cross)) {
 
         rgbaCustomization.b = getColorPart("blue", rgbaCustomization.b);
         this->refreshBackground();
     }
 
-    if (UiButtons::onTouch(alphaZE, utils->touch->lastClickPoint) ||
-        UiButtons::onPad(alphaZE, utils->pad->pressed.cross)) {
+    if (ui->buttons->onTouch(alphaZE, utils->touch->lastClickPoint) ||
+        ui->buttons->onPad(alphaZE, utils->pad->pressed.cross)) {
 
         rgbaCustomization.a = getColorPart("alpha", rgbaCustomization.a);
         this->refreshBackground();
     }
 
 
-    if (UiButtons::onTouch(backButtonZE, utils->touch->lastClickPoint) ||
+    if (ui->buttons->onTouch(backButtonZE, utils->touch->lastClickPoint) ||
         utils->pad->pressed.circle ||
-        UiButtons::onPad(backButtonZE, utils->pad->pressed.cross)) {
+        ui->buttons->onPad(backButtonZE, utils->pad->pressed.cross)) {
 
         this->utils->ptc->setLimit(PADTOUCHCTRL_TYPE_Y,  utils->config->isCustomisation() ? 6 : 2);
         chosen.clear();

@@ -10,7 +10,7 @@ ZoneEventRadioBoxes UiRadioBoxes::draw(int x, int y, UiRadioBoxesStatus status, 
     return this->drawWithText(x, y, status, "", selector, typeTheme, size);
 }
 
-ZoneEventRadioBoxes UiRadioBoxes::drawWithText(int x, int y, UiRadioBoxesStatus status, std::string text, bool selector, TypeTheme typeTheme, unsigned int size) {
+ZoneEventRadioBoxes UiRadioBoxes::drawWithText(int x, int y, UiRadioBoxesStatus status, std::string text, bool selector, TypeTheme typeTheme, unsigned int size, unsigned int textColor, TextStyle textStyle) {
     zoneEvent.x = x;
     zoneEvent.y = y;
     zoneEvent.width = size * 2;
@@ -28,7 +28,7 @@ ZoneEventRadioBoxes UiRadioBoxes::drawWithText(int x, int y, UiRadioBoxesStatus 
     }
 
     if (!text.empty()) {
-        zoneEvent.width += this->drawText(x, y , size, text).width;
+        zoneEvent.width += this->drawText(x, y , size, text, textStyle, textColor).width;
     }
 
 

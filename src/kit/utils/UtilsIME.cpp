@@ -7,8 +7,6 @@ static uint16_t ime_input_text_utf16[SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1];
 static uint8_t ime_input_text_utf8[SCE_IME_DIALOG_MAX_TEXT_LENGTH + 1];
 
 UtilsIME::UtilsIME(){
-	utilsTexts = new UtilsTexts();
-
 	SceAppUtilInitParam initParam;
 	SceAppUtilBootParam bootParam;
 	SceCommonDialogConfigParam dialogParam;
@@ -20,11 +18,51 @@ UtilsIME::UtilsIME(){
 	sceAppUtilInit(&initParam, &bootParam);
 	sceCommonDialogSetConfigParam(&dialogParam);
 }
+
+void UtilsIME::utf16ToUtf8(uint16_t *src, uint8_t *dst) {
+	for (i = 0; src[i]; i++) {
+		if ((src[i] & 0xFF80) == 0) {
+			*(dst++) = (uint8_t) (src[i] & 0xFF);
+		} else if((src[i] & 0xF800) == 0) {
+			*(dst++) = (uint8_t) (((src[i] >> 6) & 0xFF) | 0xC0);
+			*(dst++) = (uint8_t) ((src[i] & 0x3F) | 0x80);
+		} else if((src[i] & 0xFC00) == 0xD800 && (src[i + 1] & 0xFC00) == 0xDC00) {
+			*(dst++) = (uint8_t) ((((src[i] + 64) >> 8) & 0x3) | 0xF0);
+			*(dst++) = (uint8_t) ((((src[i] >> 2) + 16) & 0x3F) | 0x80);
+			*(dst++) = (uint8_t) (((src[i] >> 4) & 0x30) | 0x80 | ((src[i + 1] << 2) & 0xF));
+			*(dst++) = (uint8_t) ((src[i + 1] & 0x3F) | 0x80);
+			i += 1;
+		} else {
+			*(dst++) = (uint8_t) (((src[i] >> 12) & 0xF) | 0xE0);
+			*(dst++) = (uint8_t) (((src[i] >> 6) & 0x3F) | 0x80);
+			*(dst++) = (uint8_t) ((src[i] & 0x3F) | 0x80);
+		}
+	}
+
+	*dst = '\0';
+}
+
+void UtilsIME::utf8ToUtf16(uint8_t *src, uint16_t *dst) {
+	for (i = 0; src[i];) {
+		if ((src[i] & 0xE0) == 0xE0) {
+			*(dst++) = (uint16_t) (((src[i] & 0x0F) << 12) | ((src[i + 1] & 0x3F) << 6) | (src[i + 2] & 0x3F));
+			i += 3;
+		} else if ((src[i] & 0xC0) == 0xC0) {
+			*(dst++) = (uint16_t) (((src[i] & 0x1F) << 6) | (src[i + 1] & 0x3F));
+			i += 2;
+		} else {
+			*(dst++) = src[i];
+			i += 1;
+		}
+	}
+
+	*dst = '\0';
+}
  
 void UtilsIME::initImeDialog(const char *title, const char *initialText, int maxTextLength, unsigned int type, unsigned int option) {
     // Convert UTF8 to UTF16
-	utilsTexts->utf8ToUtf16((uint8_t *)title, ime_title_utf16);
-	utilsTexts->utf8ToUtf16((uint8_t *)initialText, ime_initial_text_utf16);
+	this->utf8ToUtf16((uint8_t *)title, ime_title_utf16);
+	this->utf8ToUtf16((uint8_t *)initialText, ime_initial_text_utf16);
  
     SceImeDialogParam param;
 	sceImeDialogParamInit(&param);
@@ -46,7 +84,7 @@ void UtilsIME::initImeDialog(const char *title, const char *initialText, int max
 
 void UtilsIME::oslOskGetText(char *text){
 	// Convert UTF16 to UTF8
-	utilsTexts->utf16ToUtf8(ime_input_text_utf16, ime_input_text_utf8);
+	this->utf16ToUtf8(ime_input_text_utf16, ime_input_text_utf8);
 	strcpy(text,(char*)ime_input_text_utf8);
 }
 

@@ -11,18 +11,18 @@ UtilsTouch::UtilsTouch(){
 
 
 void UtilsTouch::read(){
-	memcpy(touch_old, touch, sizeof(touch_old));
+	memcpy(touchOld, touch, sizeof(touchOld));
 
 	for(port = 0; port < SCE_TOUCH_PORT_MAX_NUM; port++) {
 		sceTouchPeek((SceUInt32) port, &touch[port], 1);
 	}
 
-	if (touch_old[SCE_TOUCH_PORT_FRONT].reportNum >= 1 && touch[SCE_TOUCH_PORT_FRONT].reportNum == 0) {
+	if (touchOld[SCE_TOUCH_PORT_FRONT].reportNum >= 1 && touch[SCE_TOUCH_PORT_FRONT].reportNum == 0) {
 
 		if(!scrolling){
 
-			lastClickPoint.x = touch_old[SCE_TOUCH_PORT_FRONT].report[0].x / 2;  // 1920 touch => 960 display
-			lastClickPoint.y = touch_old[SCE_TOUCH_PORT_FRONT].report[0].y / 2;
+			lastClickPoint.x = touchOld[SCE_TOUCH_PORT_FRONT].report[0].x / 2;  // 1920 touch => 960 display
+			lastClickPoint.y = touchOld[SCE_TOUCH_PORT_FRONT].report[0].y / 2;
 			scrollDirX = scrollDirY = 0;
 			lastTouchPoint = emptyClickPoint;
 			scrolling = false;
@@ -38,12 +38,12 @@ void UtilsTouch::read(){
 
 		}
 
-	}else if(touch_old[SCE_TOUCH_PORT_FRONT].reportNum >= 1 && touch[SCE_TOUCH_PORT_FRONT].reportNum >= 1){
+	}else if(touchOld[SCE_TOUCH_PORT_FRONT].reportNum >= 1 && touch[SCE_TOUCH_PORT_FRONT].reportNum >= 1){
 
-		scrollDirX = (touch[SCE_TOUCH_PORT_FRONT].report[0].x - touch_old[SCE_TOUCH_PORT_FRONT].report[0].x)/2;
-		scrollDirY = (touch[SCE_TOUCH_PORT_FRONT].report[0].y - touch_old[SCE_TOUCH_PORT_FRONT].report[0].y)/2;
-		lastTouchPoint.x = touch_old[SCE_TOUCH_PORT_FRONT].report[0].x/2;
-		lastTouchPoint.y = touch_old[SCE_TOUCH_PORT_FRONT].report[0].y/2;
+		scrollDirX = (touch[SCE_TOUCH_PORT_FRONT].report[0].x - touchOld[SCE_TOUCH_PORT_FRONT].report[0].x)/2;
+		scrollDirY = (touch[SCE_TOUCH_PORT_FRONT].report[0].y - touchOld[SCE_TOUCH_PORT_FRONT].report[0].y)/2;
+		lastTouchPoint.x = touchOld[SCE_TOUCH_PORT_FRONT].report[0].x/2;
+		lastTouchPoint.y = touchOld[SCE_TOUCH_PORT_FRONT].report[0].y/2;
 
 		if( abs(scrollDirX) > MIN_DIST_TO_SCROLL_X || abs(scrollDirY) > MIN_DIST_TO_SCROLL_Y) {
 			lastClickPoint = emptyClickPoint;

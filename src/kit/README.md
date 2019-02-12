@@ -2,14 +2,14 @@
 
 ### Kit in C++ inspired by Material UI to create quickly a beautiful application for PSVita systems
 
-Version: 0.6
+Version: 0.7
 
 Need to see the changelog ? Go to Changelog.md file available in the same folder.
 
 ## Credits
 
 * Developed & maintained by *Applelo*
-* *coderx3* (aka devingDev) for this work on VitaCord inspired me for my own IME, Pad and Touch functions
+* *coderx3* (aka devingDev) for this work on VitaCord inspired me for my own IME, scroll, Pad and Touch functions
 * *Tuxbot123* for his suggestions and his support
 * My master, *MisterAlex*
 

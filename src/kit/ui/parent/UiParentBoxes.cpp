@@ -29,9 +29,9 @@ void UiParentBoxes::drawBoxButton(int x, int y, const char *icon, unsigned int c
     icons->draw(icon, x + (size / 2), y + (size / 2), color, size);
 }
 
-TextData UiParentBoxes::drawText(int x, int y, int size, std::string text) {
-    texts->draw(x + (size * 2), y + (int) (size * 0.75), Body1, theme->getPrimaryRGBA().text, text);
-    return texts->getTextData(text, Body1);
+TextData UiParentBoxes::drawText(int x, int y, int size, std::string text, TextStyle textStyle, unsigned int color) {
+    texts->draw(x + (size * 2), y + (int) (size * 0.75), textStyle, color, text);
+    return texts->getTextData(text, textStyle);
 }
 
 

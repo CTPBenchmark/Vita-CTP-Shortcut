@@ -16,7 +16,6 @@
 #include "../lib/unilib/utf8.h"
 
 #include "UiTheme.hpp"
-#include "../utils/UtilsTexts.hh"
 
 
 #define TEXTS_DEFAULT_FONT_COLOR (unsigned int) RGBA8(0, 0, 0, 255)
@@ -51,8 +50,12 @@ typedef struct TextStyleData {
 typedef struct TextData {
     int width;
     int height;
-
 } TextData;
+
+typedef enum TextLimit {
+    TEXT_LIMIT_START,
+    TEXT_LIMIT_END
+} TextLimit;
 
 class UiTexts {
 private:
@@ -62,7 +65,11 @@ private:
     UiTheme *theme;
     std::pair<std::string, unsigned int> keyFont;
     std::string family, fontPath;
-    UtilsTexts *utilsTexts;
+
+    int i;
+    std::u32string text32;
+    TextData textDataText;
+    unsigned int posBreak;
 
     void drawFinal(int x, int y, TextStyle textStyle, unsigned int color, bool italic, std::string text);
     void drawFinal(int x, int y, TextStyleData _textStyleData, unsigned int color, std::string text);
@@ -101,10 +108,20 @@ public:
     //TextData functions
     TextData getTextData(std::string text, TextStyle textStyle, bool italic = false);
     TextData getTextData(std::string text, TextStyleData _textStyleData);
+    TextStyleData getTextStyleData(TextStyle textStyle, bool italic = false);
 
     //Dynamic import
     void cleanFonts();
     void cleanFont(std::string type, int size);
+
+    //Helpers functions
+    int keySearch(const std::string& s, const std::string& key);
+    std::string applyTextWidthLimit(std::string text, int width, TextStyleData textStyleData, TextLimit textLimit = TEXT_LIMIT_END);
+    std::string applyTextHeightLimit(std::string text, int height, TextStyleData textStyleData, TextLimit textLimit = TEXT_LIMIT_END);
+
+    //transformation text
+    std::string toUppercase(std::string text);
+    std::string toLowercase(std::string text);
 
 };
 

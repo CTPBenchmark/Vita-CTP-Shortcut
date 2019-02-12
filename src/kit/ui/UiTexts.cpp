@@ -4,24 +4,20 @@ using namespace ufal::unilib;
 
 UiTexts::UiTexts() {
     family = "Roboto";
-    utilsTexts = new UtilsTexts();
 }
 
 UiTexts::UiTexts(UiTheme *theme) {
     this->theme = theme;
     this->family = "Roboto";
-    utilsTexts = new UtilsTexts();
 }
 
 UiTexts::UiTexts(std::string family) {
     this->family = std::move(family);
-    utilsTexts = new UtilsTexts();
 }
 
 UiTexts::UiTexts(std::string family, UiTheme *theme) {
     this->theme = theme;
     this->family = std::move(family);
-    utilsTexts = new UtilsTexts();
 }
 
 UiTexts::~UiTexts() {
@@ -32,13 +28,13 @@ void UiTexts::drawFinal(int x, int y, TextStyle textStyle, unsigned int color, b
     this->calcTextStyleData(textStyle, italic);
     this->loadFont(textStyleData.type, textStyleData.size);
 
-    vita2d_font_draw_text(fonts[keyFont], x, (int) floor(y + textStyleData.size - textStyleData.offset), color, textStyleData.size, textStyleData.uppercase ? utilsTexts->toUppercase(text).c_str() : text.c_str());
+    vita2d_font_draw_text(fonts[keyFont], x, (int) floor(y + textStyleData.size - textStyleData.offset), color, textStyleData.size, textStyleData.uppercase ? this->toUppercase(text).c_str() : text.c_str());
 }
 
 void UiTexts::drawFinal(int x, int y, TextStyleData _textStyleData, unsigned int color, std::string text) {
     this->loadFont(_textStyleData.type, _textStyleData.size);
 
-    vita2d_font_draw_text(fonts[keyFont], x, (int) floor(y + _textStyleData.size - _textStyleData.offset), color, _textStyleData.size, _textStyleData.uppercase ? utilsTexts->toUppercase(text).c_str() : text.c_str());
+    vita2d_font_draw_text(fonts[keyFont], x, (int) floor(y + _textStyleData.size - _textStyleData.offset), color, _textStyleData.size, _textStyleData.uppercase ? this->toUppercase(text).c_str() : text.c_str());
 }
 
 //Draw with Material Style
@@ -132,16 +128,21 @@ void UiTexts::calcTextData(std::string text, TextStyle textStyle, bool italic) {
     this->calcTextStyleData(textStyle, italic);
     this->loadFont(textStyleData.type, textStyleData.size);
 
-    vita2d_font_text_dimensions(fonts[keyFont], textStyleData.size, textStyleData.uppercase ? utilsTexts->toUppercase(text).c_str() : text.c_str(), &textData.width, &textData.height);
+    vita2d_font_text_dimensions(fonts[keyFont], textStyleData.size, textStyleData.uppercase ? this->toUppercase(text).c_str() : text.c_str(), &textData.width, &textData.height);
 }
 
 
 TextData UiTexts::getTextData(std::string text, TextStyleData _textStyleData) {
 
     this->loadFont(std::string(_textStyleData.type), textStyleData.size);
-    vita2d_font_text_dimensions(fonts[keyFont], _textStyleData.size, _textStyleData.uppercase ? utilsTexts->toUppercase(text).c_str() : text.c_str(), &textData.width, &textData.height);
+    vita2d_font_text_dimensions(fonts[keyFont], _textStyleData.size, _textStyleData.uppercase ? this->toUppercase(text).c_str() : text.c_str(), &textData.width, &textData.height);
 
     return textData;
+}
+
+TextStyleData UiTexts::getTextStyleData(TextStyle textStyle, bool italic) {
+    this->calcTextStyleData(textStyle, italic);
+    return textStyleData;
 }
 
 //You can override this function to put your style here (if you don't want to use roboto at all)
@@ -242,4 +243,102 @@ void UiTexts::cleanFont(std::string type, int size) {
     }
     fonts.erase(keyFont);
 }
+
+
+//Helpers functions
+
+//set text to uppercase
+std::string UiTexts::toUppercase(std::string text) {
+
+    utf8::decode(text, text32);
+
+    for (auto&& chr :  text32) chr = unicode::uppercase(chr);
+
+    utf8::encode(text32, text);
+
+    return text;
+}
+
+//set text to lowercase
+std::string UiTexts::toLowercase(std::string text) {
+
+    utf8::decode(text, text32);
+
+    for (auto&& chr :  text32) chr = unicode::lowercase(chr);
+
+    utf8::encode(text32, text);
+
+    return text;
+}
+
+int UiTexts::keySearch(const std::string& s, const std::string& key) {
+    int count = 0;
+    size_t pos=0;
+    while ((pos = s.find(key, pos)) != std::string::npos) {
+        ++count;
+        ++pos;
+    }
+    return count;
+}
+
+
+std::string UiTexts::applyTextWidthLimit(std::string text, int width, TextStyleData textStyleData, TextLimit textLimit) {
+    textDataText = this->getTextData(text, textStyleData);
+
+    if (textDataText.width > width) {
+
+        posBreak = (unsigned int) (this->keySearch(text, "\n") + 1);
+        posBreak = posBreak * width;
+        posBreak = posBreak / (int)(textStyleData.size * 0.7);
+
+        std::string::size_type lastFound = text.find_last_of('\n');
+        std::string::size_type found = text.find(' ', posBreak);
+
+        //abort the mission
+        if ((lastFound == std::string::npos && found == std::string::npos) || posBreak > text.length()) {
+            return text;
+        }
+
+        if (lastFound == std::string::npos) {
+            lastFound = 0;
+        }
+
+        if (found == std::string::npos) {
+            found = text.length() - 1;
+        }
+
+        if ((found - lastFound) > 28) {
+            text.insert(posBreak, "-\n");
+        }
+        else {
+            text.replace(found, 1, "\n");
+        }
+
+
+        return this->applyTextWidthLimit(text, width, textStyleData, textLimit);
+    }
+
+    return text;
+}
+
+std::string UiTexts::applyTextHeightLimit(std::string text, int height, TextStyleData textStyleData, TextLimit textLimit) {
+    textDataText = this->getTextData(text, textStyleData);
+
+
+    if (textDataText.height > height) {
+
+        if (textLimit == TEXT_LIMIT_START) {
+            text = text.substr(0, text.length() - 2);
+        }
+        else {
+            text = text.substr(1, text.length() - 1);
+        }
+
+        return this->applyTextHeightLimit(text, height, textStyleData, textLimit);
+
+    }
+
+    return text;
+}
+
 

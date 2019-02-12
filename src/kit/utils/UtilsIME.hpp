@@ -16,8 +16,6 @@
 #include <psp2/display.h>
 #include <psp2/gxm.h>
 #include <psp2/kernel/sysmem.h>
-#include "UtilsTexts.hh"
-
 
 #define IME_DIALOG_RESULT_NONE 0
 #define IME_DIALOG_RESULT_RUNNING 1
@@ -29,7 +27,6 @@ class UtilsIME{
 private:
 	int i;
 	SceCommonDialogStatus status;
-	UtilsTexts *utilsTexts;
 
 	void oslOskGetText(char *text);
 	void initImeDialog(const char *title, const char *initialText, int maxTextLength, unsigned int type, unsigned int option);
@@ -38,6 +35,9 @@ private:
 		UtilsIME();
 		std::string getUserText(const char *title, const char *showText = "", unsigned int type = SCE_IME_TYPE_BASIC_LATIN, int maxTextLength = 128, unsigned int option = 0);
 		SceCommonDialogStatus getStatus() const;
+
+		void utf16ToUtf8(uint16_t *src, uint8_t *dst);
+		void utf8ToUtf16(uint8_t *src, uint16_t *dst);
 };
 
 #endif

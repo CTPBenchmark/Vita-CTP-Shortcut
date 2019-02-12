@@ -46,7 +46,7 @@ endif()
 
 # Flags and includes
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -fpermissive -std=gnu11 -Wall ")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fpermissive -std=c++11 -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fpermissive -std=c++11 -Wall ")
 set(VITA_MKSFOEX_FLAGS "${VITA_MKSFOEX_FLAGS} -d PARENTAL_LEVEL=1")
 set(VITA_MAKE_FSELF_FLAGS "${VITA_MAKE_FSELF_FLAGS} -a 0x2800000000000001")
 
@@ -113,7 +113,6 @@ add_executable(${SHORT_NAME}
         src/kit/ui/UiTextFields.cpp
         src/kit/ui/UiCards.cpp
 
-        src/kit/utils/UtilsTexts.cpp
         src/kit/utils/UtilsI18n.cpp
         src/kit/utils/UtilsIME.cpp
         src/kit/utils/UtilsPad.cpp
