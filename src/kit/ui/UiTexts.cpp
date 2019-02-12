@@ -289,7 +289,7 @@ std::string UiTexts::applyTextWidthLimit(std::string text, int width, TextStyleD
 
         posBreak = (unsigned int) (this->keySearch(text, "\n") + 1);
         posBreak = posBreak * width;
-        posBreak = posBreak / (int)(textStyleData.size * 0.7);
+        posBreak = posBreak / (int)(textStyleData.size);
 
         std::string::size_type lastFound = text.find_last_of('\n');
         std::string::size_type found = text.find(' ', posBreak);
@@ -305,6 +305,10 @@ std::string UiTexts::applyTextWidthLimit(std::string text, int width, TextStyleD
 
         if (found == std::string::npos) {
             found = text.length() - 1;
+        }
+
+        if (found - lastFound == 0) {
+            return text;
         }
 
         if ((found - lastFound) > 28) {

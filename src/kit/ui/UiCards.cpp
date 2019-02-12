@@ -71,7 +71,7 @@ ZoneEvent UiCards::drawPrimaryTitle(CardPrePrimaryTitle prePrimaryTitle) {
 }
 
 ZoneEvent UiCards::drawPrimaryTitle(std::string headerText, std::string subHead, int height) {
-   this->prePrimaryTitle(std::move(headerText), std::move(subHead), height);
+   this->prePrimaryTitle(std::move(headerText), std::move(subHead), width, height);
    return this->drawPrimaryTitle(cardPrePrimaryTitle);
 }
 
@@ -123,13 +123,13 @@ ZoneEvent UiCards::drawSummary(CardPreSummary cardPreSummary) {
 }
 
 ZoneEvent UiCards::drawSummary(std::string text, int height) {
-    this->preSummaryTitle(std::move(text), height);
+    this->preSummaryTitle(std::move(text), width, height);
     return this->drawSummary(cardPreSummary);
 }
 
 
 
-CardPrePrimaryTitle UiCards::prePrimaryTitle(std::string headerText, std::string subHead, int height) {
+CardPrePrimaryTitle UiCards::prePrimaryTitle(std::string headerText, std::string subHead, int width, int height) {
     headerText = texts->applyTextWidthLimit(headerText, width - (CARDS_DEFAULT_PADDING * 2), texts->getTextStyleData(H6));
     subHead = texts->applyTextWidthLimit(subHead, width - (CARDS_DEFAULT_PADDING * 2), texts->getTextStyleData(Body1));
 
@@ -171,7 +171,7 @@ CardPrePrimaryTitle UiCards::prePrimaryTitle(std::string headerText, std::string
     return cardPrePrimaryTitle;
 }
 
-CardPreSummary UiCards::preSummaryTitle(std::string text, int height) {
+CardPreSummary UiCards::preSummaryTitle(std::string text, int width, int height) {
     text = texts->applyTextWidthLimit(text, width - (CARDS_DEFAULT_PADDING), texts->getTextStyleData(Body1));
     if (height > 0) {
         text = texts->applyTextHeightLimit(text, height - (CARDS_DEFAULT_PADDING * 2), texts->getTextStyleData(Body1), TEXT_LIMIT_START);

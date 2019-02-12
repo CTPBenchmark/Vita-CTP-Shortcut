@@ -61,8 +61,8 @@ public:
 
     //ZoneEvent drawAction(std::string actionText1 = "", std::string actionText2 = "");
 
-    CardPrePrimaryTitle prePrimaryTitle(std::string headerText, std::string subHead, int height = 0);
-    CardPreSummary preSummaryTitle(std::string text, int height = 0);
+    CardPrePrimaryTitle prePrimaryTitle(std::string headerText, std::string subHead, int width = CARDS_DEFAULT_WIDTH, int height = 0);
+    CardPreSummary preSummaryTitle(std::string text, int width = CARDS_DEFAULT_WIDTH, int height = 0);
 
 };
 
