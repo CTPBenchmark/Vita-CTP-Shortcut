@@ -5,7 +5,7 @@
 #define LOGO_HEIGHT 117
 
 #include <vita2d.h>
-#include "utils/Config.hh"
+#include "../utils/Config.hh"
 #include "Background.hh"
 
 class LayoutTheme {

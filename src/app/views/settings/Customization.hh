@@ -1,7 +1,7 @@
 #ifndef CTP_SHORTCUT_CUSTOMIZATION_HH
 #define CTP_SHORTCUT_CUSTOMIZATION_HH
 
-#include "../../kit/core/View.hh"
+#include "kit/core/View.hh"
 #include <stdlib.h>
 
 class Customization : public View {
