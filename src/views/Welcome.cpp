@@ -93,7 +93,7 @@ void Welcome::controls() {
 
     for (auto &post : cardPosts) {
         if (ui->cards->onTouch(post.zoneEvent, utils->touch->lastClickPoint) ||
-            ui->buttons->onPad(post.zoneEvent, utils->pad->pressed.cross)
+            ui->cards->onPad(post.zoneEvent, utils->pad->pressed.cross)
                 ) {
             utils->webModal->invokeWebModal(post.url.c_str());
         }

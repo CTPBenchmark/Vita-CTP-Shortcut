@@ -38,6 +38,7 @@ ZoneEvent UiCards::end() {
     zoneEvent.y = yStart;
     zoneEvent.width = width;
     zoneEvent.height = height;
+    zoneEvent.selector = selected;
 
     //clean for the next draw card
     this->resetCard();
