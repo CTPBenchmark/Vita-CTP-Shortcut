@@ -180,10 +180,10 @@ add_executable(${SHORT_NAME}
         src/kit/lib/unilib/unicode.cpp
         src/kit/lib/unilib/utf8.cpp
 
-        src/kit/Ui.cpp
-        src/kit/Utils.cpp
+        src/app/Ui.cpp
+        src/app/Utils.cpp
 
-        src/kit_override/core/CustomApp.cpp
+        src/app/kit_override/core/CustomApp.cpp
 
         src/kit/ui/UiTheme.cpp
         src/kit/ui/UiIcons.cpp
@@ -201,19 +201,19 @@ add_executable(${SHORT_NAME}
         src/kit/utils/UtilsPadTouchCtrl.cpp
         src/kit/utils/UtilsScroll.cpp
 
-        src/ui/Background.cpp
-        src/ui/LayoutTheme.cpp
-        src/ui/LayoutTheme.hh
+        src/app/ui/Background.cpp
+        src/app/ui/LayoutTheme.cpp
+        src/app/ui/LayoutTheme.hh
 
-        src/utils/Config.cpp
-        src/utils/WebModal.cpp
-        src/utils/CTPApi.cpp
-        src/utils/Singleton.cpp
-        src/utils/CTPApiThread.cpp
+        src/app/utils/Config.cpp
+        src/app/utils/WebModal.cpp
+        src/app/utils/CTPApi.cpp
+        src/app/utils/Singleton.cpp
+        src/app/utils/CTPApiThread.cpp
 
-        src/views/Welcome.cpp
-        src/views/settings/Settings.cpp
-        src/views/settings/Customization.cpp
+        src/app/views/Welcome.cpp
+        src/app/views/settings/Settings.cpp
+        src/app/views/settings/Customization.cpp
 
         src/main.cpp
         )

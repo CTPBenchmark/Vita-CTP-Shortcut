@@ -1,9 +1,9 @@
 #ifndef VITAMATERIALKIT_WELCOME_HH
 #define VITAMATERIALKIT_WELCOME_HH
 
-#include "../kit/core/View.hh"
+#include "kit/core/View.hh"
 #include "../utils/CTPApi.hh"
-#include <utils/CTPApiThread.hh>
+#include "../utils/CTPApiThread.hh"
 
 typedef struct CardPostContent {
     CardPrePrimaryTitle cardPrePrimaryTitle;

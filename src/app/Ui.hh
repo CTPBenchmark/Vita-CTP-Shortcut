@@ -2,14 +2,14 @@
 #define VITAMATERIALKIT_UI_HH
 
 
-#include "ui/UiCards.hh"
-#include "ui/UiTheme.hh"
-#include "ui/UiIcons.hh"
-#include "ui/UiTexts.hh"
-#include "ui/UiButtons.hh"
-#include "../ui/LayoutTheme.hh"
-#include "ui/UiCheckboxes.hh"
-#include "ui/UiTextFields.hh"
+#include "kit/ui/UiCards.hh"
+#include "kit/ui/UiTheme.hh"
+#include "kit/ui/UiIcons.hh"
+#include "kit/ui/UiTexts.hh"
+#include "kit/ui/UiButtons.hh"
+#include "kit/ui/UiCheckboxes.hh"
+#include "kit/ui/UiTextFields.hh"
+#include "ui/LayoutTheme.hh"
 
 
 class Ui {

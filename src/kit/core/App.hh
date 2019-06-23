@@ -7,8 +7,8 @@
 #include <map>
 #include "View.hh"
 #include "ViewsController.hh"
-#include "../Ui.hh"
-#include "../Utils.hh"
+#include "app/Ui.hh"
+#include "app/Utils.hh"
 #include "Config.hh"
 
 

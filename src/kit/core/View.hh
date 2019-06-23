@@ -2,8 +2,8 @@
 #define VITAMATERIALKIT_VIEW_HH
 
 #include "ViewsController.hh"
-#include "../Ui.hh"
-#include "../Utils.hh"
+#include "app/Ui.hh"
+#include "app/Utils.hh"
 
 
 class View {

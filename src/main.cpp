@@ -1,8 +1,8 @@
-#include "kit_override/core/CustomApp.hh"
+#include "app/kit_override/core/CustomApp.hh"
 
-#include "views/Welcome.hh"
-#include "views/settings/Settings.hh"
-#include "views/settings/Customization.hh"
+#include "app/views/Welcome.hh"
+#include "app/views/settings/Settings.hh"
+#include "app/views/settings/Customization.hh"
 
 
 int main() {
