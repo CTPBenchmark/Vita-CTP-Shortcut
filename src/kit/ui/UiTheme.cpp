@@ -1,4 +1,4 @@
-#include "UiTheme.hpp"
+#include "UiTheme.hh"
 
 UiTheme::UiTheme() = default;
 

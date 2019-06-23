@@ -1,4 +1,4 @@
-#include "UtilsTouch.hpp"
+#include "UtilsTouch.hh"
 
 UtilsTouch::UtilsTouch(){
 	emptyClickPoint.x = emptyClickPoint.y = 0;

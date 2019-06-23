@@ -2,15 +2,15 @@
 #define VITAMATERIALKIT_UTILS_HH
 
 
-#include <utils/CTPApi.hh>
-#include <kit/utils/UtilsScroll.hh>
+#include "../utils/CTPApi.hh"
 #include "../utils/Config.hh"
 #include "../utils/WebModal.hh"
-#include "utils/UtilsTouch.hpp"
-#include "utils/UtilsPad.hpp"
-#include "utils/UtilsI18n.hpp"
-#include "utils/UtilsIME.hpp"
+#include "utils/UtilsTouch.hh"
+#include "utils/UtilsPad.hh"
+#include "utils/UtilsI18n.hh"
+#include "utils/UtilsIME.hh"
 #include "utils/UtilsPadTouchCtrl.hh"
+#include "utils/UtilsScroll.hh"
 
 
 class Utils {

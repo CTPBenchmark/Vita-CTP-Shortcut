@@ -1,6 +1,6 @@
 
-#ifndef VITA_MATERIAL_KIT_I18N_HPP
-#define VITA_MATERIAL_KIT_I18N_HPP
+#ifndef VITA_MATERIAL_KIT_I18N_HH
+#define VITA_MATERIAL_KIT_I18N_HH
 
 #include <string>
 #include <stdio.h>
@@ -26,4 +26,4 @@ class UtilsI18n {
 };
 
 
-#endif //VITA_MATERIAL_KIT_I18N_HPP
+#endif //VITA_MATERIAL_KIT_I18N_HH

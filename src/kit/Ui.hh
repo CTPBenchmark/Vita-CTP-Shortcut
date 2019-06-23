@@ -2,11 +2,11 @@
 #define VITAMATERIALKIT_UI_HH
 
 
-#include <kit/ui/UiCards.hh>
-#include "ui/UiTheme.hpp"
-#include "ui/UiIcons.hpp"
-#include "ui/UiTexts.hpp"
-#include "ui/UiButtons.hpp"
+#include "ui/UiCards.hh"
+#include "ui/UiTheme.hh"
+#include "ui/UiIcons.hh"
+#include "ui/UiTexts.hh"
+#include "ui/UiButtons.hh"
 #include "../ui/LayoutTheme.hh"
 #include "ui/UiCheckboxes.hh"
 #include "ui/UiTextFields.hh"

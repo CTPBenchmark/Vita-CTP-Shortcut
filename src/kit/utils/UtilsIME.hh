@@ -1,5 +1,5 @@
-#ifndef VITA_MATERIAL_KIT_IME_HPP
-#define VITA_MATERIAL_KIT_IME_HPP
+#ifndef VITA_MATERIAL_KIT_IME_HH
+#define VITA_MATERIAL_KIT_IME_HH
 
 #include <stdio.h>
 #include <string>

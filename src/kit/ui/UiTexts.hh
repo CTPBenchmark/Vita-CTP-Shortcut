@@ -1,5 +1,5 @@
-#ifndef VITA_MATERIAL_KIT_UI_TEXT_HPP
-#define VITA_MATERIAL_KIT_UI_TEXT_HPP
+#ifndef VITA_MATERIAL_KIT_UI_TEXT_HH
+#define VITA_MATERIAL_KIT_UI_TEXT_HH
 
 
 #include <map>
@@ -15,7 +15,7 @@
 #include "../lib/unilib/unicode.h"
 #include "../lib/unilib/utf8.h"
 
-#include "UiTheme.hpp"
+#include "UiTheme.hh"
 
 
 #define TEXTS_DEFAULT_FONT_COLOR (unsigned int) RGBA8(0, 0, 0, 255)
@@ -66,9 +66,13 @@ private:
     std::pair<std::string, unsigned int> keyFont;
     std::string family, fontPath;
 
-    int i;
     std::u32string text32;
     TextData textDataText;
+    TextData substringTextData;
+    std::string subString;
+    unsigned int pos;
+    int adjust, posEnd;
+
     unsigned int posBreak;
 
     void drawFinal(int x, int y, TextStyle textStyle, unsigned int color, bool italic, std::string text);
@@ -116,14 +120,15 @@ public:
 
     //Helpers functions
     int keySearch(const std::string& s, const std::string& key);
-    std::string applyTextWidthLimit(std::string text, int width, TextStyleData textStyleData, TextLimit textLimit = TEXT_LIMIT_END);
-    std::string applyTextHeightLimit(std::string text, int height, TextStyleData textStyleData, TextLimit textLimit = TEXT_LIMIT_END);
+    std::string applyTextWidthLimit(std::string text, int width, TextStyleData textStyleData);
+    std::string applyTextHeightLimitCut(std::string text, int height, TextStyleData textStyleData, TextLimit textLimit = TEXT_LIMIT_END);
 
     //transformation text
     std::string toUppercase(std::string text);
     std::string toLowercase(std::string text);
+    std::string toTitleCase(std::string text);
 
 };
 
 
-#endif //VITA_MATERIAL_KIT_UI_TEXT_HPP
+#endif //VITA_MATERIAL_KIT_UI_TEXT_HH

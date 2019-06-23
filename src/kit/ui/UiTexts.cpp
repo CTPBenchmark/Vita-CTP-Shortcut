@@ -1,4 +1,4 @@
-#include "UiTexts.hpp"
+#include "UiTexts.hh"
 
 using namespace ufal::unilib;
 
@@ -271,6 +271,17 @@ std::string UiTexts::toLowercase(std::string text) {
     return text;
 }
 
+std::string UiTexts::toTitleCase(std::string text) {
+    utf8::decode(text, text32);
+
+    for (auto&& chr :  text32) chr = unicode::titlecase(chr);
+
+    utf8::encode(text32, text);
+
+    return text;
+}
+
+
 int UiTexts::keySearch(const std::string& s, const std::string& key) {
     int count = 0;
     size_t pos=0;
@@ -282,14 +293,14 @@ int UiTexts::keySearch(const std::string& s, const std::string& key) {
 }
 
 
-std::string UiTexts::applyTextWidthLimit(std::string text, int width, TextStyleData textStyleData, TextLimit textLimit) {
+std::string UiTexts::applyTextWidthLimit(std::string text, int width, TextStyleData textStyleData) {
     textDataText = this->getTextData(text, textStyleData);
 
     if (textDataText.width > width) {
 
         posBreak = (unsigned int) (this->keySearch(text, "\n") + 1);
         posBreak = posBreak * width;
-        posBreak = posBreak / (int)(textStyleData.size);
+        posBreak = posBreak / (int)(textStyleData.size * 0.6);
 
         std::string::size_type lastFound = text.find_last_of('\n');
         std::string::size_type found = text.find(' ', posBreak);
@@ -307,11 +318,12 @@ std::string UiTexts::applyTextWidthLimit(std::string text, int width, TextStyleD
             found = text.length() - 1;
         }
 
+        //abort the mission episode 2
         if (found - lastFound == 0) {
             return text;
         }
 
-        if ((found - lastFound) > 28) {
+        if ((found - lastFound) > 25) {
             text.insert(posBreak, "-\n");
         }
         else {
@@ -319,15 +331,14 @@ std::string UiTexts::applyTextWidthLimit(std::string text, int width, TextStyleD
         }
 
 
-        return this->applyTextWidthLimit(text, width, textStyleData, textLimit);
+        return this->applyTextWidthLimit(text, width, textStyleData);
     }
 
     return text;
 }
 
-std::string UiTexts::applyTextHeightLimit(std::string text, int height, TextStyleData textStyleData, TextLimit textLimit) {
+std::string UiTexts::applyTextHeightLimitCut(std::string text, int height, TextStyleData textStyleData, TextLimit textLimit) {
     textDataText = this->getTextData(text, textStyleData);
-
 
     if (textDataText.height > height) {
 
@@ -338,8 +349,7 @@ std::string UiTexts::applyTextHeightLimit(std::string text, int height, TextStyl
             text = text.substr(1, text.length() - 1);
         }
 
-        return this->applyTextHeightLimit(text, height, textStyleData, textLimit);
-
+        return this->applyTextHeightLimitCut(text, height, textStyleData, textLimit);
     }
 
     return text;

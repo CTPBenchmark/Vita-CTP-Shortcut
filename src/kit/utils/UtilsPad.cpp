@@ -1,4 +1,4 @@
-#include "UtilsPad.hpp"
+#include "UtilsPad.hh"
 
 UtilsPad::UtilsPad(){
 	buttonAssign = checkButtonAssign();

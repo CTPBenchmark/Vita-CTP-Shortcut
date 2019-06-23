@@ -1,14 +1,21 @@
 # Changelog
 
 ## Version 0.7
-* Add Card class
-* Add Scroll class to manage scroll elements
+* Add UiCard class
+* Add UtilsScroll class to manage scroll elements
+* Add support for scroll in UtilsPadTouchCtrl
 * Improve RadioBoxes & Checkboxes functions with text to support changes (Text type & color)
-* Remove UtilsTexts and revert all changes to UiTexts & UtilsIme to simplify logic
+* Remove UtilsTexts and revert all changes to UiTexts & UtilsIme to simplify the logic
 * Move applyTextHeightLimit & applyTextWidthLimit of TextFields into UiTexts
-* Add possibility to choose a start value in PadTouchController
-* Improve PadTouchController class to update value
+* Rename applyTextHeightLimit to applyTextHeightLimitCut and improve the function
+* Add possibility to choose a start value in UtilsPadTouchCtrl
+* Improve UtilsPadTouchCtrl class to update value
 * Increase size of the float button (without text)
+* Add PSVita Icons in UiIcons class (don't work with Vita3K)
+* Improve CMakeLists for better readability and to download/update dependencies (material design icons, icons font cpp headers, unilib)
+* Add Travis CI (thanks @gnuton for the Travis CI setup and the docker image for PSVita homebrews)
+* Add debug function and mode (auto by default, ctrl, touch) for UtilsPadTouchCtrl
+* Update Material Design Icons
 * Fixes everywhere, every commit
 
 ## Version 0.6

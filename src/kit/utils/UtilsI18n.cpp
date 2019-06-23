@@ -1,6 +1,6 @@
 
 #include <string.h>
-#include "UtilsI18n.hpp"
+#include "UtilsI18n.hh"
 
 UtilsI18n::UtilsI18n() {
     SceAppUtilInitParam initParam;

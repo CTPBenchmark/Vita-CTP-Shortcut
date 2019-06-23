@@ -1,5 +1,5 @@
-#ifndef VITA_MATERIAL_KIT_TOUCH_HPP
-#define VITA_MATERIAL_KIT_TOUCH_HPP
+#ifndef VITA_MATERIAL_KIT_TOUCH_HH
+#define VITA_MATERIAL_KIT_TOUCH_HH
 
 #include <string.h>
 #include <stdlib.h>

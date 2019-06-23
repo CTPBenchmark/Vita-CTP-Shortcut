@@ -1,7 +1,7 @@
 #ifndef VITAMATERIALKIT_UIEVENT_HH
 #define VITAMATERIALKIT_UIEVENT_HH
 
-#include "../utils/UtilsTouch.hpp"
+#include "../utils/UtilsTouch.hh"
 
 typedef struct ZoneEvent {
     int x;

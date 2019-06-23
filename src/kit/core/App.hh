@@ -9,8 +9,8 @@
 #include "ViewsController.hh"
 #include "../Ui.hh"
 #include "../Utils.hh"
+#include "Config.hh"
 
-#define DEBUG_APP 0
 
 class App {
 private:

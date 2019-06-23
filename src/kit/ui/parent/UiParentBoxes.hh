@@ -1,9 +1,9 @@
 #ifndef VITAMATERIALKIT_UIPARENTBOXES_HH
 #define VITAMATERIALKIT_UIPARENTBOXES_HH
 
-#include "../UiTheme.hpp"
-#include "../UiTexts.hpp"
-#include "../UiIcons.hpp"
+#include "../UiTheme.hh"
+#include "../UiTexts.hh"
+#include "../UiIcons.hh"
 
 #define BOXES_DEFAULT_SIZE 40
 #define BOXES_DEFAULT_SELECTOR_ALPHA 100

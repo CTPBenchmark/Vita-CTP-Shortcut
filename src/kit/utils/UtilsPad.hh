@@ -1,5 +1,5 @@
-#ifndef VITA_MATERIAL_KIT_PAD_HPP
-#define VITA_MATERIAL_KIT_PAD_HPP
+#ifndef VITA_MATERIAL_KIT_PAD_HH
+#define VITA_MATERIAL_KIT_PAD_HH
 
 #include <psp2/ctrl.h>
 #include <psp2/registrymgr.h>
@@ -71,7 +71,7 @@ class UtilsPad{
 };
 
 
-#endif //VITA_MATERIAL_KIT_PAD_HPP
+#endif //VITA_MATERIAL_KIT_PAD_HH
 
 
 

@@ -1,4 +1,4 @@
-#include "UiButtons.hpp"
+#include "UiButtons.hh"
 
 UiButtons::UiButtons(UiTheme *theme) {
     this->theme = theme;
@@ -136,8 +136,8 @@ ZoneEvent UiButtons::containedDraw(std::string text, int x, int y, TypeTheme typ
 ZoneEvent UiButtons::floatDraw(const char *icon, int x, int y, TypeTheme typeTheme, bool selected, std::string text) {
 
     if (text.length() > 0) {
-        TextData textData = texts->getTextData(text, textStyle);
-        int circleHeight = (textData.height + 20) / 2;
+        textData = texts->getTextData(text, textStyle);
+        circleHeight = (textData.height + 20) / 2;
 
         if (selected) {
             vita2d_draw_fill_circle(x + circleHeight, y + circleHeight, circleHeight, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
@@ -157,7 +157,7 @@ ZoneEvent UiButtons::floatDraw(const char *icon, int x, int y, TypeTheme typeThe
     }
     else {
         if (selected) {
-            vita2d_draw_fill_circle(x + 35, y + 25, 35, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
+            vita2d_draw_fill_circle(x + 35, y + 35, 35, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().light : theme->getSecondaryRGBA().light);
         }
         else {
             vita2d_draw_fill_circle(x + 35, y + 35, 35, typeTheme == THEME_PRIMARY ? theme->getPrimaryRGBA().normal : theme->getSecondaryRGBA().normal);

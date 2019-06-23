@@ -13,10 +13,10 @@ class WebModal {
 private:
     Config *config;
     std::string webModalUrl;
-    void invokeWebModal(const char *url);
 public:
     WebModal(Config *config);
 
+    void invokeWebModal(const char *url);
     void launchAutoWebModal();
     void launchCTPNews();
     void launchCTPForum();

@@ -2,8 +2,8 @@
 #define VITAMATERIALKIT_UTILSSCROLL_HH
 
 
-#include "UtilsTouch.hpp"
-#include "UtilsPad.hpp"
+#include "UtilsTouch.hh"
+#include "UtilsPad.hh"
 
 #include <string>
 #include <map>
@@ -26,7 +26,6 @@ typedef struct ScrollChannelData {
 
 class UtilsScroll {
 private:
-    UtilsPad *pad;
     UtilsTouch *touch;
 
     std::map<std::string, ScrollChannelData> channels;
@@ -35,15 +34,20 @@ public:
     UtilsScroll();
     UtilsScroll(UtilsTouch *touch);
 
-    void create(std::string channel, ScrollDirection scrollDirection, int min, int max, int xZone, int yZone, int widthZone, int heightZone);
-    void remove(std::string channel);
+    void create(const std::string& channel, ScrollDirection scrollDirection, int min, int max, int xZone, int yZone, int widthZone, int heightZone);
+    void remove(const std::string& channel);
 
-    void controller(std::string channel, bool decreaseTrigger = false, bool increaseTrigger = false, int speed = 6);
+    int controller(const std::string& channel, bool isCtrl = false, int value = 0);
 
-    int getScroll(std::string channel);
-
-
-
+    ScrollChannelData getChannelData(const std::string& channel);
+    ScrollDirection getScrollDirection(const std::string& channel);
+    int getMax(const std::string& channel);
+    int getMin(const std::string& channel);
+    int getValue(const std::string& channel);
+    int getXZone(const std::string& channel);
+    int getYZone(const std::string& channel);
+    int getWidthZone(const std::string& channel);
+    int getHeightZone(const std::string& channel);
 
 };
 

@@ -2,8 +2,8 @@
 #define VITAMATERIALKIT_UICHECKBOXES_HH
 
 
-#include "UiTheme.hpp"
-#include "UiIcons.hpp"
+#include "UiTheme.hh"
+#include "UiIcons.hh"
 #include "../core/UiEvent.hh"
 #include "parent/UiParentBoxes.hh"
 

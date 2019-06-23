@@ -2,9 +2,9 @@
 #define VITAMATERIALKIT_UITEXTFIELDS_HH
 
 #include "../core/UiEvent.hh"
-#include "UiTheme.hpp"
-#include "UiIcons.hpp"
-#include "UiTexts.hpp"
+#include "UiTheme.hh"
+#include "UiIcons.hh"
+#include "UiTexts.hh"
 #include <string>
 
 //https://material.io/design/components/text-fields.html

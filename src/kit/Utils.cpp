@@ -17,8 +17,8 @@ void Utils::init() {
    this->i18n = new UtilsI18n();
    this->ime = new UtilsIME();
    this->webModal = new WebModal(this->config);
-   this->ptc = new UtilsPadTouchCtrl(this->pad, this->touch);
    this->scroll = new UtilsScroll(this->touch);
+   this->ptc = new UtilsPadTouchCtrl(this->pad, this->touch, this->scroll);
    CTPApi::createInstance();
 }
 

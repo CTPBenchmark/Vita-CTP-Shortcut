@@ -132,7 +132,7 @@ ZoneEventTextField UiTextFields::filledDraw(
         }
         else if (textFieldMode == TEXTFIELD_MODE_TEXTAREA && textDataText.width > (width - TEXTFIELD_PADDING - prefixIconPos - suffixIconPos)) {
             showedText = texts->applyTextWidthLimit(text, width - TEXTFIELD_PADDING - prefixIconPos - suffixIconPos, mainTextStyleData);
-            showedText = texts->applyTextHeightLimit(showedText, height - 32, mainTextStyleData);
+            showedText = texts->applyTextHeightLimitCut(showedText, height - 32, mainTextStyleData);
         }
         else {
             showedText = text;

@@ -1,4 +1,4 @@
-# Vita-CTP-Shortcut
+# Vita-CTP-Shortcut [![Build Status](https://travis-ci.org/CTPBenchmark/Vita-CTP-Shortcut.svg?branch=master)](https://travis-ci.org/CTPBenchmark/Vita-CTP-Shortcut)
 A small app to access quickly to [Custom Protocol](http://customprotocol.com) Website.
 
 ## Changelog
